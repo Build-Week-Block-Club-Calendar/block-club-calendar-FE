@@ -5,38 +5,34 @@ import Typography from '@material-ui/core/Typography';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 
-function Signup (props) {
-    const signup = (credentials) => {
-        // create account
-        // route to /login
+function Login (props) {
+    const login = (credentials) => {
+        // login to retrieve the JWT token
+        // add the token to localstorage
+        // route to /friends (whatever landing page)
         axiosWithAuth()
-          .post('/api/auth/register', credentials)
+          .post('/api/auth/login', credentials)
           .then(res => {
-            console.log("res from signup post", res);
-            props.history.push('/login');
+            console.log("res from login post", res);
+            localStorage.setItem('token', res.data.token);
+            props.history.push('/calendar');
           })
           .catch(err => console.log(err.response));
       };
 
-    const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     return (
         <Paper>
           <Typography variant="h4" component="h2">
-            Sign Up
+            Log In
           </Typography>
           <Formik
-            initialValues={{ username: "", email: "", password: "" }}
+            initialValues={{ username: "", password: "" }}
             validate={values => {
                 let errors = {};
                 if (values.username === "") {
                 errors.username = "Username is required";
                 } else if (values.username.length < 2) {
                 errors.username = "Username must be 2 characters at minimum";
-                }
-                if (values.email === "") {
-                errors.email = "Email is required";
-                } else if (!emailTest.test(values.email)) {
-                errors.email = "Invalid email address format";
                 }
                 if (values.password === "") {
                 errors.password = "Password is required";
@@ -49,9 +45,8 @@ function Signup (props) {
                 alert("Form is validated! Submitting the form...");
                 console.log("credentials from object", { 
                     username: values.username, 
-                    email: values.email, 
                     password: values.password });
-                signup({ username: values.username, password: values.password });
+                login({ username: values.username, password: values.password });
                 actions.setSubmitting(false);
             }}
             >
@@ -62,14 +57,7 @@ function Signup (props) {
                             component="p"
                             name="username"
                             className="error"
-                        />
-
-                        <Field type="text" name="email" placeholder="Email Address" />
-                        <ErrorMessage
-                            component="p"
-                            name="email"
-                            className="error"
-                        />
+                        /> 
                 
                         <Field type="password" name="password" placeholder="Password" />
                         <ErrorMessage
@@ -82,7 +70,7 @@ function Signup (props) {
                                 type="submit" 
                                 className="primary-button"
                                 disabled={isSubmitting}>
-                            {isSubmitting ? "Please wait..." : "Sign Up"}
+                            {isSubmitting ? "Please wait..." : "Log In"}
                             </button>
                         </div>
                     </Form> 
@@ -94,4 +82,4 @@ function Signup (props) {
 }
 
 
-export default Signup;
+export default Login;

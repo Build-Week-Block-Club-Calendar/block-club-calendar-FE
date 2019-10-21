@@ -3,20 +3,22 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import { connect } from "react-redux";
+import { signUp } from "../../actions";
 
 
 function Signup (props) {
-    const signup = (credentials) => {
-        // create account
-        // route to /login
-        axiosWithAuth()
-          .post('/api/auth/register', credentials)
-          .then(res => {
-            console.log("res from signup post", res);
-            props.history.push('/login');
-          })
-          .catch(err => console.log(err.response));
-      };
+    // const signup = (credentials) => {
+    //     // create account
+    //     // route to /login
+    //     axiosWithAuth()
+    //       .post('/api/auth/register', credentials)
+    //       .then(res => {
+    //         console.log("res from signup post", res);
+    //         props.history.push('/login');
+    //       })
+    //       .catch(err => console.log(err.response));
+    //   };
 
     const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     return (
@@ -51,7 +53,7 @@ function Signup (props) {
                     username: values.username, 
                     email: values.email, 
                     password: values.password });
-                signup({ username: values.username, password: values.password });
+                // signup({ username: values.username, password: values.password });
                 actions.setSubmitting(false);
             }}
             >

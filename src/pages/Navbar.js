@@ -32,7 +32,9 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Block Club Calendar
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" href="/calendar">Calendar</Button>
+          <Button color="inherit" href="/login">Login</Button>
+          <Button color="inherit" href="/signup">Sign up</Button>
         </Toolbar>
       </AppBar>
     </div>
