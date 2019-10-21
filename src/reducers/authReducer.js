@@ -1,31 +1,37 @@
 import * as a from '../actions/'
 
 const initialState = {
+    user : { username: "",
+        password: "",
+        email: "",
+        name: "",
+        organizations: "",
+        avatarUrl: "",
+        role: "" },
     isPosting: false,
-    error: '',
-    user: []
+    error: ''
 }
 
 export const authReducer = (state = initialState, action) => {
     switch(action.type){
-        case a.START_POSTING:
+        case a.SIGNUP_START:
             return {
                 ...state,
                 isPosting: true,
                 error: ''
             }
-        case a.POST_SUCCESS:
+        case a.SIGNUP_SUCCESS:
             return {
                 ...state,
+                user: { ...state.user, username: action.payload.username },
                 isPosting: false,
-                error: '',
-                user: action.payload
+                error: ''
             }
-        case a.POST_FAILURE:
+        case a.SIGNUP_FAIL:
             return {
                 ...state,
                 isPosting: false,
-                user: action.payload
+                error: action.payload
             }
         default:
             return state;

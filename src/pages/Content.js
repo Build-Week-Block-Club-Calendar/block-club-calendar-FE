@@ -6,8 +6,9 @@ import axios from 'axios';
 
 //components
 import Signup from "../components/auth/Signup";
+import SignupReducer from "../components/auth/Signup_reducer";
 import Login from "../components/auth/Login";
-import Calendar from "../components/Calendar";
+import CalendarList from "../components/CalendarList";
 // import SignupMUI from "../components/auth/Signu_mui";
 
 
@@ -21,9 +22,10 @@ const Content = () => {
         {/* <Route path="/aboutus" component={AboutUs} /> */}
         {/* <Route path="/login" component={Login} /> */}
         <Route path="/signup" component={Signup} />
+        <Route path="/signup-reducer" component={SignupReducer} />
         <Route path="/login" component={Login} />
-        <Route path="/calendar" component={Calendar} />
-        <Route component={Calendar} />
+        <Route path="/calendar" component={CalendarList} />
+        <Route component={CalendarList} />
       </Switch>
 
       {/* Test routes for react-router-dom */}
