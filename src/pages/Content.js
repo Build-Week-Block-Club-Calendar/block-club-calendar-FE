@@ -3,6 +3,9 @@ import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 // import PrivateRoute from "../utils/PrivateRoute.js";
 import axios from 'axios';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+
 
 //components
 import Signup from "../components/auth/Signup";
@@ -13,32 +16,32 @@ import CalendarList from "../components/CalendarList";
 
 
 const Content = () => {
+
   return (
-    <div className="content">
-
-      <Switch>
-        {/* <Route path="/calendar" component={CalendarList} /> */}
-        {/* <PrivateRoute path="/profile" component={UserProfile} /> */}
-        {/* <Route path="/aboutus" component={AboutUs} /> */}
-        {/* <Route path="/login" component={Login} /> */}
-        <Route path="/signup" component={Signup} />
-        <Route path="/signup-reducer" component={SignupReducer} />
-        <Route path="/login" component={Login} />
-        <Route path="/calendar" component={CalendarList} />
-        <Route component={CalendarList} />
-      </Switch>
-
-      {/* Test routes for react-router-dom */}
-      {/* <div>
-        <span>Test routes:</span>
-        <NavLink to="/login">Login</NavLink>
-        <NavLink to="/signup">Signup</NavLink>
-        <NavLink to="/appraise">Appraise</NavLink>
-        <NavLink to="/result">Result</NavLink>
-        <NavLink to="/saved">Saved</NavLink>
-      </div> */}
-
-    </div>
+    <Box my={2}>
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justify="flex-start"
+        style={{ minHeight: '100vh' }}
+      >
+        <Grid item xs={3}>
+          <Switch>
+            {/* <Route path="/calendar" component={CalendarList} /> */}
+            {/* <PrivateRoute path="/profile" component={UserProfile} /> */}
+            {/* <Route path="/aboutus" component={AboutUs} /> */}
+            {/* <Route path="/login" component={Login} /> */}
+            <Route path="/signup" component={Signup} />
+            <Route path="/signup-reducer" component={SignupReducer} />
+            <Route path="/login" component={Login} />
+            <Route path="/calendar" component={CalendarList} />
+            <Route component={CalendarList} />
+          </Switch>
+        </Grid>
+      </Grid> 
+    </Box>
   );
 }
 

@@ -2,10 +2,18 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
+const useStyles = makeStyles(theme => ({
+    root: {
+        padding: theme.spacing(3, 2),
+    },
+  }));
 
 function Signup (props) {
+    const classes = useStyles();
+
     const signup = (credentials) => {
         // create account
         // route to /login
@@ -20,7 +28,7 @@ function Signup (props) {
 
     const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     return (
-        <Paper>
+        <Paper className={classes.root}>
           <Typography variant="h4" component="h2">
             Sign Up
           </Typography>
