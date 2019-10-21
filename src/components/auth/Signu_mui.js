@@ -2,21 +2,22 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import { axiosWithAuth } from '../../utils/axiosWithAuth';
+// import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
 function Signup (props) {
-    const signup = (credentials) => {
-        // create account
-        // route to /login
-        axiosWithAuth()
-          .post('/api/auth/register', credentials)
-          .then(res => {
-            console.log("res from signup post", res);
-            props.history.push('/login');
-          })
-          .catch(err => console.log(err.response));
-      };
+    // const signup = (credentials) => {
+    //     // login to retrieve the JWT token
+    //     // add the token to localstorage
+    //     // route to /friends (whatever landing page)
+    //     axiosWithAuth()
+    //       .post('/api/login', credentials)
+    //       .then(res => {
+    //         localStorage.setItem('token', res.data.payload);
+    //         props.history.push('/friends');
+    //       })
+    //       .catch(err => console.log(err.response));
+    //   };
 
     const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     return (
@@ -26,7 +27,7 @@ function Signup (props) {
           </Typography>
           <Formik
             // initialValues={{ email: "", password: "" }}
-            initialValues={{ username: "", email: "", password: "" }}
+            initialValues={{ username: "", password: "" }}
             validate={values => {
                 let errors = {};
                 if (values.username === "") {
@@ -48,11 +49,8 @@ function Signup (props) {
             }}
             onSubmit={(values, actions) => {
                 alert("Form is validated! Submitting the form...");
-                console.log("credentials from object", { 
-                    username: values.username, 
-                    email: values.email, 
-                    password: values.password });
-                signup({ username: values.username, password: values.password });
+                console.log("credentials from object", { username: values.username, password: values.password });
+                // login({ username: values.username, password: values.password });
                 actions.setSubmitting(false);
             }}
             >
@@ -63,16 +61,25 @@ function Signup (props) {
                             component="p"
                             name="username"
                             className="error"
-                        />
+                        />  
+                        {/* {touched.username && errors.username && (
+                            <p className="error">{errors.username}</p>
+                        )} */}
 
                         <Field type="text" name="email" placeholder="Email Address" />
                         <ErrorMessage
                             component="p"
                             name="email"
                             className="error"
-                        />
+                        />  
+                        {/* {touched.username && errors.username && (
+                            <p className="error">{errors.username}</p>
+                        )} */}
                 
                         <Field type="password" name="password" placeholder="Password" />
+                        {/* {touched.password && errors.password && (
+                            <p className="error">{errors.password}</p>
+                        )} */}
                         <ErrorMessage
                             component="p"
                             name="password"
