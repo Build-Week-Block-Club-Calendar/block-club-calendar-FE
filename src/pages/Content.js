@@ -8,7 +8,7 @@ import axios from 'axios';
 import Signup from "../components/auth/Signup";
 import Login from "../components/auth/Login";
 import Calendar from "../components/Calendar";
-import SignupMUI from "../components/auth/Signu_mui";
+// import SignupMUI from "../components/auth/Signu_mui";
 
 
 const Content = () => {
@@ -20,7 +20,7 @@ const Content = () => {
         {/* <PrivateRoute path="/profile" component={UserProfile} /> */}
         {/* <Route path="/aboutus" component={AboutUs} /> */}
         {/* <Route path="/login" component={Login} /> */}
-        <Route path="/signup" component={SignupMUI} />
+        <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Route path="/calendar" component={Calendar} />
         <Route component={Calendar} />

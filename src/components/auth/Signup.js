@@ -25,7 +25,6 @@ function Signup (props) {
             Sign Up
           </Typography>
           <Formik
-            // initialValues={{ email: "", password: "" }}
             initialValues={{ username: "", email: "", password: "" }}
             validate={values => {
                 let errors = {};

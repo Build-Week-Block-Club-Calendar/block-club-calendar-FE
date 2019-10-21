@@ -14,7 +14,7 @@ function Login (props) {
           .post('/api/auth/login', credentials)
           .then(res => {
             console.log("res from login post", res);
-            localStorage.setItem('token', res.data.payload);
+            localStorage.setItem('token', res.data.token);
             props.history.push('/calendar');
           })
           .catch(err => console.log(err.response));
@@ -70,7 +70,7 @@ function Login (props) {
                                 type="submit" 
                                 className="primary-button"
                                 disabled={isSubmitting}>
-                            {isSubmitting ? "Please wait..." : "Sign Up"}
+                            {isSubmitting ? "Please wait..." : "Log In"}
                             </button>
                         </div>
                     </Form> 
