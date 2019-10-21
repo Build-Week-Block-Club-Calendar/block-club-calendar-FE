@@ -53,7 +53,7 @@ function Signup (props) {
                     username: values.username, 
                     email: values.email, 
                     password: values.password });
-                signup({ username: values.username, password: values.password });
+                // signup({ username: values.username, password: values.password });
                 actions.setSubmitting(false);
             }}
             >
