@@ -1,21 +1,16 @@
 import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-import CalendarList from './components/CalenderList.js'
-
-import './App.css';
+import Navbar from './pages/Navbar';
+import Signup from './components/auth/Signup';
 
 function App() {
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <div className="App">
-        <h1>Block club calendar</h1>
-        <CalendarList />
-      </div>
-    </React.Fragment>
+    <div className="App">
+      <Navbar />
+      <Signup />
+    </div>
   );
 }
 
 export default App;
-``
