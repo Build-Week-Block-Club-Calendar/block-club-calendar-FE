@@ -19,28 +19,17 @@ const Content = () => {
 
   return (
     <Box my={2}>
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justify="flex-start"
-        style={{ minHeight: '100vh' }}
-      >
-        <Grid item xs={3}>
-          <Switch>
-            {/* <Route path="/calendar" component={CalendarList} /> */}
-            {/* <PrivateRoute path="/profile" component={UserProfile} /> */}
-            {/* <Route path="/aboutus" component={AboutUs} /> */}
-            {/* <Route path="/login" component={Login} /> */}
-            <Route path="/signup" component={Signup} />
-            <Route path="/signup-reducer" component={SignupReducer} />
-            <Route path="/login" component={Login} />
-            <Route path="/calendar" component={CalendarList} />
-            <Route component={CalendarList} />
-          </Switch>
-        </Grid>
-      </Grid> 
+      <Switch>
+        {/* <Route path="/calendar" component={CalendarList} /> */}
+        {/* <PrivateRoute path="/profile" component={UserProfile} /> */}
+        {/* <Route path="/aboutus" component={AboutUs} /> */}
+        {/* <Route path="/login" component={Login} /> */}
+        <Route path="/signup" component={Signup} />
+        <Route path="/signup-reducer" component={SignupReducer} />
+        <Route path="/login" component={Login} />
+        <Route path="/calendar" component={CalendarList} />
+        <Route component={CalendarList} />
+      </Switch>
     </Box>
   );
 }
