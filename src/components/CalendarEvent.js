@@ -68,7 +68,7 @@ export default function CalendarEvent(props) {
         <Card className={classes.card}>
           <div className={classes.topBlock}>
             <CardContent className={classes.content}>
-              <Typography variant="h4" component="h3" align ="center" gutterBottom="true">
+              <Typography variant="h4" component="h3" align ="center" gutterBottom={true}>
                 {event.Title}
               </Typography>
               <div className={classes.details}>
