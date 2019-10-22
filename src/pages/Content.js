@@ -11,6 +11,7 @@ import Box from '@material-ui/core/Box';
 import Signup from "../components/auth/Signup";
 import Login from "../components/auth/Login";
 import CalendarList from "../components/CalendarList";
+import AddEvent from "../components/AddEvent";
 // import SignupMUI from "../components/auth/Signu_mui";
 
 
@@ -26,6 +27,7 @@ const Content = () => {
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
         <Route path="/calendar" component={CalendarList} />
+        <Route path="/add-event" component={AddEvent} />
         <Route component={CalendarList} />
       </Switch>
     </Box>
