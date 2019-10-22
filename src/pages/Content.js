@@ -9,6 +9,7 @@ import Signup from "../components/auth/Signup";
 import SignupReducer from "../components/auth/Signup_reducer";
 import Login from "../components/auth/Login";
 import CalendarList from "../components/CalendarList";
+import AddEvent from "../components/AddEvent";
 // import SignupMUI from "../components/auth/Signu_mui";
 
 
@@ -25,6 +26,7 @@ const Content = () => {
         <Route path="/signup-reducer" component={SignupReducer} />
         <Route path="/login" component={Login} />
         <Route path="/calendar" component={CalendarList} />
+        <Route path="/add-event" component={AddEvent} />
         <Route component={CalendarList} />
       </Switch>
 

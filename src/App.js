@@ -14,7 +14,6 @@ function App() {
       <Navbar />
       <Content />
       {/* <Footer /> */}
-      <CalendarList />
     </div>
   );
 }
