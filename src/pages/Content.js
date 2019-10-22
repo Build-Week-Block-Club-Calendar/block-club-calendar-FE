@@ -25,7 +25,6 @@ const Content = () => {
         {/* <Route path="/aboutus" component={AboutUs} /> */}
         {/* <Route path="/login" component={Login} /> */}
         <Route path="/signup" component={Signup} />
-        <Route path="/signup-reducer" component={SignupReducer} />
         <Route path="/login" component={Login} />
         <Route path="/calendar" component={CalendarList} />
         <Route component={CalendarList} />

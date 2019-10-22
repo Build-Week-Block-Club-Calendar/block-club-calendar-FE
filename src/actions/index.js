@@ -1,4 +1,4 @@
-import { axiosWithAuth } from "../utils/axiosWithAuth.js";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 import axios from "axios";
 import decode from "jwt-decode";
 
@@ -9,10 +9,14 @@ export const SIGNUP_FAIL = "SIGNUP_FAIL";
 
 export const signUp = credentials => dispatch => {
   dispatch({ type: SIGNUP_START });
-  axios
+  axiosWithAuth()
     .post('/api/auth/register', credentials)
-    .then(res => dispatch({ type: SIGNUP_SUCCESS, payload: res.data }))
-    .catch(err => dispatch({ type: SIGNUP_FAIL, payload: err }));
+    .then(res => {
+      dispatch({ type: SIGNUP_SUCCESS, payload: res.data })
+      console.log(res.data)})
+    .catch(err => {
+      dispatch({ type: SIGNUP_FAIL, payload: err })
+      console.log(err)});
 };
 
 // export const GET_HOUSE_START = "GET_HOUSE_START";
