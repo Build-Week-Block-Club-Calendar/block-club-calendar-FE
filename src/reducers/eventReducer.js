@@ -1,6 +1,7 @@
 import * as a from '../actions/eventActions'
 
 const initialState = {
+    eventList: [],
     event: {
         Title: "Party",
         Date: "Tomorrow",
@@ -17,6 +18,23 @@ const initialState = {
 
 export const eventReducer = (state = initialState, action) => {
     switch(action.type){
+        case a.GET_EVENT_START:
+            return {
+                ...state,
+                isPosting: true,
+                isSuccessful: false,
+                isError: false,
+                error: ''
+            }
+        case a.GET_EVENT_SUCCESS:
+            return {
+                ...state,
+                eventList: action.payload,
+                isPosting: false,
+                isSuccessful: true,
+                isError: false,
+                error: ''
+            }
         case a.POST_EVENT_START:
             return {
                 ...state,

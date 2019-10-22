@@ -2,11 +2,27 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 import decode from "jwt-decode";
 
 // eventReducer create event actions
+export const GET_EVENT_START = "GET_EVENT_START";
+export const GET_EVENT_SUCCESS = "GET_EVENT_SUCCESS";
 export const POST_EVENT_START = "POST_EVENT_START";
 export const PUT_EVENT_START = "PUT_EVENT_START";
 export const DEL_EVENT_START = "DEL_EVENT_START";
 export const EVENT_SUCCESS = "POST_EVENT_SUCCESS";
-export const EVENT_FAIL = "POST_EVENT_FAIL";
+export const EVENT_FAIL = "EVENT_FAIL";
+
+export const getEventList = () => dispatch => {
+  dispatch({ type: GET_EVENT_START });
+  axiosWithAuth()
+    .get(`/api/events`)
+    .then(res => {
+      console.log("GET_EVENT RES: ", res.data);
+      dispatch({ type: GET_EVENT_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log("I'm an error for postEvent", err);
+      dispatch({ type: EVENT_FAIL, payload: err })
+    });
+};
 
 export const postEvent = (newEvent) => dispatch => {
   dispatch({ type: POST_EVENT_START, payload: newEvent });
@@ -36,10 +52,10 @@ export const updateEvent = (editedEvent) => dispatch => {
     });
 };
 
-export const deleteEvent = (id) => dispatch => {
-  dispatch({ type: DELETE_EVENT_START, payload: editedEvent });
+export const deleteEvent = (editedEvent) => dispatch => {
+  dispatch({ type: DEL_EVENT_START, payload: editedEvent });
   axiosWithAuth()
-    .put(`/api/events`, editedEvent)
+    .delete(`/api/events/${editedEvent.id}`)
     .then(res => {
       console.log("DELETE_EVENT RES: ", res.data);
       dispatch({ type: EVENT_SUCCESS, payload: res.data });

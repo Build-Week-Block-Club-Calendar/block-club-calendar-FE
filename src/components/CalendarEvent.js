@@ -76,6 +76,8 @@ const DeleteButton = withStyles(theme => ({
 export default function CalendarEvent(props) {
   const classes = useStyles();
   const { event } = props;
+  
+  console.log("props from event", props)
 
     return (
         <Card className={classes.card}>
@@ -116,6 +118,7 @@ export default function CalendarEvent(props) {
                 <DeleteButton
                   variant="contained"
                   startIcon={<DeleteIcon />}
+                  onClick={() => props.delete(event)}
                 > 
                   Delete
                 </DeleteButton>

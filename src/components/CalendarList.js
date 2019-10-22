@@ -1,35 +1,48 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import { connect } from "react-redux";
+import { getEventList, deleteEvent } from "../actions/eventActions";
 
 import Box from '@material-ui/core/Box';
 
 import CalendarEvent from './CalendarEvent';
 
-export default function RecipeReviewCard() {
+function CalendarList(props) {
 //   const [expanded, setExpanded] = React.useState(false);
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 
 //   const handleExpandClick = () => {
 //     setExpanded(!expanded);
 //   };
-
+// console.log("props.deleteEvent", props.deleteEvent)
   useEffect(() => {
-    axios
-      .get(`https://block-club-calendar.herokuapp.com/api/events`, {
-      })
-      .then(response => {
-        const events = response.data;
-        setData(events);
-        console.log(events);
-      });
+    props.getEventList()
   }, []);
 
   
     return (
         <Box display="flex" flexDirection="Column" flexWrap="nowrap" alignItems="center">
-            {data.map(event => (
-            <CalendarEvent event={event} key={event.id} />   
+            {props.eventList.map(event => (
+            <CalendarEvent 
+              key={event.id} 
+              event={event} 
+              delete={props.deleteEvent} />   
             ))}
         </Box>
     );
 }
+
+const mapStateToProps = state => {
+    return {
+      eventList: state.event.eventList,
+      isPosting: state.event.isPosting,
+      isSuccessful: state.event.isSuccessful,
+      isError: state.event.isError,
+      error: state.event.error
+    };
+};
+  
+export default connect(
+    mapStateToProps,
+    { getEventList, deleteEvent }
+)(CalendarList);
