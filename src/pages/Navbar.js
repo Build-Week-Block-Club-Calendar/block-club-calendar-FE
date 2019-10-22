@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -22,6 +23,12 @@ const useStyles = makeStyles(theme => ({
 export default function ButtonAppBar() {
   const classes = useStyles();
 
+  let history = useHistory();
+  
+  const navClick = (path) =>{
+    history.push(path);
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -32,10 +39,10 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Block Club Calendar
           </Typography>
-          <Button color="inherit" href="/add-event">Add Event</Button>
-          <Button color="inherit" href="/calendar">Calendar</Button>
-          <Button color="inherit" href="/login">Login</Button>
-          <Button color="inherit" href="/signup">Sign up</Button>
+            <Button color="inherit">Add Event</Button>
+            <Button color="inherit" onClick={() => navClick("/calendar")}>Calendar</Button>
+            <Button color="inherit" onClick={() => navClick("/login")}>Login</Button>
+            <Button color="inherit" onClick={() => navClick("/signup")}>Sign up</Button>
         </Toolbar>
       </AppBar>
     </div>
