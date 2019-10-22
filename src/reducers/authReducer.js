@@ -1,15 +1,19 @@
 import * as a from '../actions/'
 
 const initialState = {
-    user: { username: "",
+    userData: { username: "",
         password: "",
         email: "",
         name: "",
         organizations: "",
         avatarUrl: "",
         role: "" },
-    isSignedUp: false,
+    decodedToken: {
+            token: {},
+        },
     isPosting: false,
+    isSignedUp: false,
+    isLoggedIn: false,
     isError: false,
     error: ''
 }
@@ -19,8 +23,8 @@ export const authReducer = (state = initialState, action) => {
         case a.SIGNUP_START:
             return {
                 ...state,
-                isSignedUp: false,
                 isPosting: true,
+                isSignedUp: false,
                 isError: false,
             error: ''
             }
@@ -28,19 +32,49 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: { ...state.user, username: action.payload.username },
-                isSignedUp: true,
                 isPosting: false,
+                isSignedUp: true,
                 isError: false,
                 error: ''
             }
         case a.SIGNUP_FAIL:
             return {
                 ...state,
-                isSignedUp: false,
                 isPosting: false,
+                isSignedUp: false,
                 isError: true,
                 error: action.payload
             }
+        case a.LOGIN_START:
+            return {
+                ...state,
+                isPosting: true,
+                isError: false,
+                error: ''
+            };
+        case a.LOGIN_SUCCESS:
+            return {
+                ...state,
+                isPosting: false,
+                isLoggedIn: true,
+                isError: false,
+                error: ''
+            };
+        case a.LOGIN_DECODE:
+            return {
+                ...state,
+                decodedToken: {
+                    token: action.payload
+                }
+            };
+        case a.LOGIN_FAIL:
+            return {
+                ...state,
+                isPosting: false,
+                isLoggedIn: false,
+                isError: true,
+                error: action.payload
+            };
         default:
             return state;
     }

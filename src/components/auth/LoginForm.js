@@ -1,9 +1,11 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { Formik, Form, Field } from "formik";
 import { TextField } from 'formik-material-ui';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import { connect } from "react-redux";
+import { logIn } from "../../actions";
 
 const useStyles = makeStyles(theme => ({
     columnNowrap: {
@@ -16,21 +18,9 @@ const useStyles = makeStyles(theme => ({
 function LoginForm (props) {
     const classes = useStyles();
 
-    const login = (credentials) => {
-        // login to retrieve the JWT token
-        // add the token to localstorage
-        // route to /friends (whatever landing page)
-        axiosWithAuth()
-          .post('/api/auth/login', credentials)
-          .then(res => {
-            console.log("res from login post", res);
-            localStorage.setItem('token', res.data.token);
-            props.history.push('/calendar');
-          })
-          .catch(err => console.log(err.response));
-      };
-
     return (
+        <>
+        {props.isLoggedIn ? <Redirect push to="/calendar" /> : null}
         <Formik
             initialValues={{ username: "", password: "" }}
             validate={values => {
@@ -48,11 +38,13 @@ function LoginForm (props) {
                 return errors;
             }}
             onSubmit={(values, actions) => {
-                // alert("Form is validated! Submitting the form...");
+                alert("Form is validated! Submitting the form...");
                 console.log("credentials from object", { 
                     username: values.username, 
                     password: values.password });
-                // login({ username: values.username, password: values.password });
+                props.logIn({ 
+                    username: values.username, 
+                    password: values.password });
                 actions.setSubmitting(false);
             }}
         >
@@ -85,9 +77,25 @@ function LoginForm (props) {
                 </Form> 
             )}
         </Formik>
+        {props.isError && (
+            <p className="error">{props.error.message}</p>
+        )}
+        </>
     )
 
 }
 
-
-export default LoginForm;
+const mapStateToProps = state => {
+    return {
+      user: state.auth.user,
+      isPosting: state.auth.isPosting,
+      isLoggedIn: state.auth.isLoggedIn,
+      isError: state.auth.isError,
+      error: state.auth.error
+    };
+};
+  
+export default connect(
+    mapStateToProps,
+    { logIn }
+)(LoginForm);

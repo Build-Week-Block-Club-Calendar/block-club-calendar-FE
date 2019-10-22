@@ -16,13 +16,14 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-function Signup (props) {
+function SignupForm (props) {
     const classes = useStyles();
       
     const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     return (
         <>
         {props.isSignedUp ? <Redirect push to="/login" /> : null}
+        {props.isLoggedIn ? <Redirect push to="/calendar" /> : null}
         <Formik
             initialValues={{ username: "", email: "", password: "" }}
             validate={values => {
@@ -105,12 +106,12 @@ function Signup (props) {
 
 }
 
-
 const mapStateToProps = state => {
     return {
       user: state.auth.user,
-      isSignedUp: state.auth.isSignedUp,
       isPosting: state.auth.isPosting,
+      isSignedUp: state.auth.isSignedUp,
+      isLoggedIn: state.auth.isLoggedIn,
       isError: state.auth.isError,
       error: state.auth.error
     };
@@ -119,4 +120,4 @@ const mapStateToProps = state => {
 export default connect(
     mapStateToProps,
     { signUp }
-)(Signup);
+)(SignupForm);

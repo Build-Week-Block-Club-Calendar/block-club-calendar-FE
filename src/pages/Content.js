@@ -9,7 +9,6 @@ import Box from '@material-ui/core/Box';
 
 //components
 import Signup from "../components/auth/Signup";
-import SignupReducer from "../components/auth/Signup_reducer";
 import Login from "../components/auth/Login";
 import CalendarList from "../components/CalendarList";
 // import SignupMUI from "../components/auth/Signu_mui";
