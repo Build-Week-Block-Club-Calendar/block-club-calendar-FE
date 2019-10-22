@@ -1,4 +1,4 @@
-import * as a from '../actions/'
+import * as a from '../actions/authActions'
 
 const initialState = {
     userData: { username: "",

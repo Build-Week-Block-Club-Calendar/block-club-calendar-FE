@@ -12,6 +12,7 @@ import { authReducer as auth } from './authReducer';
 // export const reducer = combineReducers({})
 
 export default combineReducers({
-  auth
+  auth,
+  // events
   // otherReducers
 });
