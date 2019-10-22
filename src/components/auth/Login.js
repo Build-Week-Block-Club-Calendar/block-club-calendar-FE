@@ -9,6 +9,9 @@ import LoginForm from './LoginForm';
 const useStyles = makeStyles(theme => ({
     root: {
         padding: theme.spacing(3, 2),
+        display: 'flex',
+        flexFlow: 'column nowrap',
+        alignItems: 'center',
     },
   }));
 
@@ -24,10 +27,10 @@ function Login (props) {
           justify="flex-start"
           style={{ minHeight: '100vh' }}
         >
-            <Grid item xs={3}>
+            <Grid item xs={12} med={4}>
                 <Paper className={classes.root}>
                     <Typography variant="h4" component="h2">
-                        Log In
+                    Log In
                     </Typography>
                     <LoginForm />
                 </Paper>

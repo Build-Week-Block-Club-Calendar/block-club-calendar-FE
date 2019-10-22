@@ -1,8 +1,21 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
+import { TextField } from 'formik-material-ui';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+    columnNowrap: {
+        display: 'flex',
+        flexFlow: 'column nowrap',
+        alignItems: 'center',
+    },
+  }));
 
 function LoginForm (props) {
+    const classes = useStyles();
+
     const login = (credentials) => {
         // login to retrieve the JWT token
         // add the token to localstorage
@@ -35,37 +48,40 @@ function LoginForm (props) {
                 return errors;
             }}
             onSubmit={(values, actions) => {
-                alert("Form is validated! Submitting the form...");
+                // alert("Form is validated! Submitting the form...");
                 console.log("credentials from object", { 
                     username: values.username, 
                     password: values.password });
-                login({ username: values.username, password: values.password });
+                // login({ username: values.username, password: values.password });
                 actions.setSubmitting(false);
             }}
         >
-            {({ isSubmitting }) => (
-                <Form>
-                    <Field type="text" name="username" placeholder="Username" />
-                    <ErrorMessage
-                        component="p"
-                        name="username"
-                        className="error"
-                    /> 
+            {() => (
+                <Form className={classes.columnNowrap}>
+                    <Field 
+                        type="text" 
+                        name="username" 
+                        label="Username"
+                        component={TextField}
+                        margin="normal"
+                        fullWidth 
+                    />
             
-                    <Field type="password" name="password" placeholder="Password" />
-                    <ErrorMessage
-                        component="p"
-                        name="password"
-                        className="error"
-                    />  
-                    <div className="button-container">
-                        <button 
-                            type="submit" 
-                            className="primary-button"
-                            disabled={isSubmitting}>
-                        {isSubmitting ? "Please wait..." : "Log In"}
-                        </button>
-                    </div>
+                    <Field 
+                        type="password" 
+                        name="password" 
+                        label="Password"
+                        component={TextField}
+                        margin="normal"
+                        fullWidth 
+                    />
+                    <Button 
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                    >
+                        Log In
+                    </Button>
                 </Form> 
             )}
         </Formik>
