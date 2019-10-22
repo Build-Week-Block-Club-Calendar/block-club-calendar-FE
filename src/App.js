@@ -9,7 +9,7 @@ import Content from './pages/Content';
 
 const useStyles = makeStyles(theme => ({
   root: {
-      background: '#e8f5e9'
+      background: '#ffffe4'
   },
 }));
 

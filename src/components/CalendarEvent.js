@@ -1,11 +1,14 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
@@ -39,7 +42,7 @@ const useStyles = makeStyles(theme => ({
   media: {
     border: "1px solid black"
   },
-  bottomBlock: {
+  deletebutton: {
     marginTop: 15,
     marginBottom: 15,
     display: 'flex',
@@ -59,6 +62,16 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: red[500],
   },
 }));
+
+const DeleteButton = withStyles(theme => ({
+  root: {
+    color: theme.palette.getContrastText(red[500]),
+    backgroundColor: red[500],
+    '&:hover': {
+      backgroundColor: red[700],
+    },
+  },
+}))(Button);
 
 export default function CalendarEvent(props) {
   const classes = useStyles();
@@ -86,8 +99,26 @@ export default function CalendarEvent(props) {
                 </Typography>
               </div>
               <CardActions className={classes.controls}>
-                <Button variant="contained" color="primary">Share</Button>
-                <Button variant="contained" color="primary">Going</Button>
+                <Button 
+                  variant="contained" 
+                  color="primary"
+                  startIcon={<DoneOutlineIcon />}
+                >
+                  Going
+                </Button>
+                <Button 
+                  variant="contained" 
+                  color="secondary"
+                  startIcon={<EditIcon />}
+                >
+                  Edit
+                </Button>
+                <DeleteButton
+                  variant="contained"
+                  startIcon={<DeleteIcon />}
+                > 
+                  Delete
+                </DeleteButton>
               </CardActions>
             </CardContent>
             <CardMedia

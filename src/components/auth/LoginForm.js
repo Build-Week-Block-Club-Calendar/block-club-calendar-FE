@@ -78,7 +78,7 @@ function LoginForm (props) {
             )}
         </Formik>
         {props.isError && (
-            <p className="error">{props.error.message}</p>
+            <p className="error">{props.error}</p>
         )}
         </>
     )
