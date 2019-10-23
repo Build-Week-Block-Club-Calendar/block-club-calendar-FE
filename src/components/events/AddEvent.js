@@ -36,7 +36,7 @@ function AddEvent (props) {
                     <Typography variant="h5" component="p">
                     Add Event to Block Club Calendar
                     </Typography>
-                    <EventForm action={props.postEvent} />
+                    <EventForm type="add" action={props.postEvent} />
                 </Paper>
              </Grid>
         </Grid> 

@@ -20,13 +20,27 @@ function EventForm (props) {
 
     console.log("props from EventForm", props)
 
+    let buttonText
+    if (props.type === "add") {
+        buttonText = "Create Event"
+    } else if (props.type === "edit") {
+        buttonText = "Update Event"
+    }
+
     return (
         <>
 
         <Formik
             initialValues={
                 props.values 
-                    ? props.values 
+                    ?  { 
+                        title: props.values.Title, 
+                        date: props.values.Date, 
+                        time: props.values.Time, 
+                        location: props.values.Location, 
+                        description: props.values.Description, 
+                        link: props.values.Link, 
+                        image: props.values.Image } 
                     : { 
                         title: "", 
                         date: "", 
@@ -125,7 +139,7 @@ function EventForm (props) {
                         variant="contained"
                         color="primary"
                     >
-                        Create Event
+                        {buttonText}
                     </Button>
                 </Form> 
             )}
