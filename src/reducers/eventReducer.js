@@ -10,6 +10,7 @@ const initialState = {
         Description: "Dope Party",
         Link: "google.com",
         Image: "image.png"},
+    isFetching: false,
     isPosting: false,
     isSuccessful: false,
     isError: false,
@@ -21,7 +22,7 @@ export const eventReducer = (state = initialState, action) => {
         case a.GET_EVENT_START:
             return {
                 ...state,
-                isPosting: true,
+                isFetching: true,
                 isSuccessful: false,
                 isError: false,
                 error: ''
@@ -30,7 +31,7 @@ export const eventReducer = (state = initialState, action) => {
             return {
                 ...state,
                 eventList: action.payload,
-                isPosting: false,
+                isFetching: false,
                 isSuccessful: true,
                 isError: false,
                 error: ''
@@ -45,6 +46,15 @@ export const eventReducer = (state = initialState, action) => {
                 error: ''
             }
         case a.PUT_EVENT_START:
+            return {
+                ...state,
+                event: action.payload,
+                isPosting: true,
+                isSuccessful: false,
+                isError: false,
+                error: ''
+            }
+        case a.DEL_EVENT_START:
             return {
                 ...state,
                 event: action.payload,
