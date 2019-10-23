@@ -1,5 +1,8 @@
 import React from 'react';
+import * as moment from 'moment';
+
 import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
@@ -25,10 +28,13 @@ const useStyles = makeStyles(theme => ({
   topBlock : {
     display: 'flex'
   },
+  redBorder: {
+    // border: "2px solid red"
+  },
   content: {
     display: 'flex',
     flexDirection: 'column',
-    width: '50%'
+    // width: '50%'
   },
   details: {
     border: "2px solid #338a3e",
@@ -42,7 +48,9 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: theme.spacing(1),
   },
   media: {
-    border: "1px solid black"
+    border: "1px solid black",
+    width: "100%",
+    height: "100%"
   },
   deletebutton: {
     marginTop: 15,
@@ -83,56 +91,62 @@ export default function CalendarEvent(props) {
 
     return (
         <Card className={classes.card}>
-          <div className={classes.topBlock}>
-            <CardContent className={classes.content}>
-              <Typography variant="h4" component="h3" align ="center" gutterBottom={true}>
-                {event.Title}
-              </Typography>
-              <div className={classes.details}>
-                <Typography variant="body2" component="p">
-                  Location: {event.Location}
+          <Grid container>
+            <Grid item xs={12} sm={12} md={6} className={classes.redBorder}>
+              <CardContent className={classes.content}>
+                <Typography variant="h4" component="h3" align ="center" gutterBottom={true}>
+                  {event.Title}
                 </Typography>
-                <Typography variant="body2" component="p">
-                  Date: {event.Date}
-                </Typography>
-                <Typography variant="body2" component="p">
-                  Time: {event.Time}
-                </Typography>
-                <Typography variant="body2" component="p">
-                  Description: {event.Description}
-                </Typography>
-              </div>
-              <CardActions className={classes.controls}>
-                <Button 
-                  variant="contained" 
-                  color="primary"
-                  startIcon={<DoneOutlineIcon />}
-                >
-                  Going
-                </Button>
-                <EditEventButton values={event}/>
-                {/* <Button 
-                  variant="contained" 
-                  color="secondary"
-                  startIcon={<EditIcon />}
-                >
-                  Edit
-                </Button> */}
-                <DeleteButton
-                  variant="contained"
-                  startIcon={<DeleteIcon />}
-                  onClick={() => props.delete(event)}
-                > 
-                  Delete
-                </DeleteButton>
-              </CardActions>
-            </CardContent>
-            <CardMedia
-                className={classes.media}
-                image={event.Image}
-                title={event.Title}
-            />
-          </div>
+                <div className={classes.details}>
+                  <Typography variant="body2" component="p">
+                    Location: {event.Location}
+                  </Typography>
+                  <Typography variant="body2" component="p">
+                    {/* Date: {event.Date} */}
+                    Date: {`${moment(event.Date).format('dddd, MMMM Do YYYY')}`}
+                  </Typography>
+                  <Typography variant="body2" component="p">
+                    {/* Time: {event.Time} */}
+                    Time: {`${moment(event.Time).format('H:mm A')}`}
+                  </Typography>
+                  <Typography variant="body2" component="p">
+                    Description: {event.Description}
+                  </Typography>
+                </div>
+                <CardActions className={classes.controls}>
+                  <Button 
+                    variant="contained" 
+                    color="primary"
+                    startIcon={<DoneOutlineIcon />}
+                  >
+                    Going
+                  </Button>
+                  <EditEventButton values={event}/>
+                  {/* <Button 
+                    variant="contained" 
+                    color="secondary"
+                    startIcon={<EditIcon />}
+                  >
+                    Edit
+                  </Button> */}
+                  <DeleteButton
+                    variant="contained"
+                    startIcon={<DeleteIcon />}
+                    onClick={() => props.delete(event)}
+                  > 
+                    Delete
+                  </DeleteButton>
+                </CardActions>
+              </CardContent>
+            </Grid>
+            <Grid item xs={12} sm={12} md={6} className={classes.redBorder}>
+              <CardMedia
+                  className={classes.media}
+                  image={event.Image}
+                  title={event.Title}
+              />
+            </Grid>
+          </Grid>
         </Card>   
     );
 }

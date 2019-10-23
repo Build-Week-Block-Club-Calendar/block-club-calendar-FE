@@ -4,21 +4,12 @@ import { connect } from "react-redux";
 import { getEventList, deleteEvent } from "../actions/eventActions";
 
 import Box from '@material-ui/core/Box';
-import { makeStyles } from '@material-ui/core/styles';
 
 import CalendarEvent from './CalendarEvent';
 import AddEventFab from './events/AddEventFab';
 
-const useStyles = makeStyles(theme => ({
-  fab: {
-    position: 'absolute',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-  }
-}));
 
 function CalendarList(props) {
-  const classes = useStyles();
 
 //   const [expanded, setExpanded] = React.useState(false);
   // const [data, setData] = useState([]);
@@ -40,7 +31,7 @@ function CalendarList(props) {
               event={event} 
               delete={props.deleteEvent} />   
             ))}
-            <AddEventFab className={classes.fab} />
+            <AddEventFab />
         </Box>
     );
 }
