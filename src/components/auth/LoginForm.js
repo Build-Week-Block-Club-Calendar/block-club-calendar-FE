@@ -5,7 +5,7 @@ import { TextField } from 'formik-material-ui';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from "react-redux";
-import { logIn } from "../../actions";
+import { logIn } from "../../actions/authActions";
 
 const useStyles = makeStyles(theme => ({
     columnNowrap: {
@@ -78,7 +78,7 @@ function LoginForm (props) {
             )}
         </Formik>
         {props.isError && (
-            <p className="error">{props.error.message}</p>
+            <p className="error">{props.error}</p>
         )}
         </>
     )

@@ -1,4 +1,4 @@
-import * as a from '../actions/'
+import * as a from '../actions/authActions'
 
 const initialState = {
     userData: { username: "",
@@ -73,7 +73,7 @@ export const authReducer = (state = initialState, action) => {
                 isPosting: false,
                 isLoggedIn: false,
                 isError: true,
-                error: action.payload
+                error: action.payload.response.data.message
             };
         default:
             return state;

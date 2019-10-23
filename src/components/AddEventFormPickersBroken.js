@@ -1,15 +1,13 @@
 import React, {useState} from 'react';
 import { Formik, Form, Field } from "formik";
 import { TextField } from 'formik-material-ui';
+import { MenuItem } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import 'date-fns';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
-import { connect } from "react-redux";
-import { postEvent } from '../actions/eventActions';
-
+import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker, DatePicker, TimePicker } from '@material-ui/pickers';
 
 const useStyles = makeStyles(theme => ({
     columnNowrap: {
@@ -19,14 +17,88 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-function AddEventForm (props) {
-    const classes = useStyles();
+const FormikDatePicker = ({
+    name,
+    form: { setFieldValue },
+    field: { value },
+    ...rest
+  }) => {
+    // console.log(rest);
+
     const [selectedDate, setSelectedDate] = React.useState(new Date());
 
     const handleDateChange = date => {
-        setSelectedDate(selectedDate);
+        setSelectedDate(date);
     };
-    console.log("connected props", props)
+
+    return (
+      <DatePicker
+        name={name}
+        margin="normal"
+        keyboard
+        clearable
+        autoOk
+        label="Event Date"
+        format="MM/dd/yyyy"
+        placeholder="10/10/2018"
+        // handle clearing outside => pass plain array if you are not controlling value outside
+        mask={value =>
+          value
+            ? [/[0-3]/, /\d/, "/", /0|1/, /\d/, "/", /1|2/, /\d/, /\d/, /\d/]
+            : []
+        }
+        value={selectedDate}
+        onChange={value => {
+            setFieldValue("date", value);
+            handleDateChange(value)}}
+        KeyboardButtonProps={{
+            'aria-label': 'change date',
+        }}
+        animateYearScrolling={false}
+      />
+    );
+  };
+  
+//   const FormikTimePicker = ({
+//     name,
+//     form: { setFieldValue },
+//     field: { value },
+//     ...rest
+//   }) => {
+//     // console.log(rest);
+
+//     const [selectedDate, setSelectedDate] = React.useState(new Date());
+
+//     const handleDateChange = date => {
+//         setSelectedDate(date);
+//     };
+
+//     return (
+//       <TimePicker
+//         name={name}
+//         margin="normal"
+//         label="Event Time"
+//         // format="MM/dd/yyyy"
+//         // handle clearing outside => pass plain array if you are not controlling value outside
+//         // mask={value =>
+//         //   value
+//         //     ? [/[0-3]/, /\d/, "/", /0|1/, /\d/, "/", /1|2/, /\d/, /\d/, /\d/]
+//         //     : []
+//         // }
+//         value={selectedDate}
+//         onChange={value => {
+//             setFieldValue("time", value);
+//             handleDateChange(value)}}
+//         KeyboardButtonProps={{
+//             'aria-label': 'change date',
+//         }}
+//         animateYearScrolling={false}
+//       />
+//     );
+//   };
+  
+function AddEventForm (props) {
+    const classes = useStyles();
 
     return (
         <>
@@ -57,20 +129,11 @@ function AddEventForm (props) {
                     description: values.description,
                     link: values.link,
                     image: values.image, });
-
-                props.postEvent({ 
-                    title: values.title, 
-                    date: values.date,
-                    time: values.time,
-                    location: values.location,
-                    description: values.description,
-                    link: values.link,
-                    image: values.image, });
                 actions.setSubmitting(false);
             }}
         >
 
-            {() => (
+            {({ isSubmitting, setFieldValue }) => (
                 <Form className={classes.columnNowrap}>
                     <Field 
                         type="text" 
@@ -81,27 +144,10 @@ function AddEventForm (props) {
                         fullWidth 
                     />
 
-                    <Field 
-                        type="text" 
-                        name="date" 
-                        label="Event Date"
-                        component={TextField}
-                        margin="normal"
-                        fullWidth 
-                    />
-
-                    <Field 
-                        type="text" 
-                        name="time" 
-                        label="Event Time"
-                        component={TextField}
-                        margin="normal"
-                        fullWidth 
-                    />
-
-                    {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <Grid container justify="space-around">
-                            <KeyboardDatePicker
+                            <Field component={FormikDatePicker} name="date" />
+                            {/* <KeyboardDatePicker
                                 margin="normal"
                                 name="date"
                                 id="date-picker-dialog"
@@ -112,7 +158,27 @@ function AddEventForm (props) {
                                 KeyboardButtonProps={{
                                     'aria-label': 'change date',
                                 }}
-                            />
+                            /> */}
+                            <Field
+                                type="text"
+                                name="select"
+                                label="Event Time"
+                                select
+                                variant="standard"
+                                margin="normal"
+                                component={TextField}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            >
+                                <MenuItem value={"1 PM"}>
+                                    1 PM
+                                </MenuItem>
+                                <MenuItem value={"2 PM"}>
+                                    2 PM
+                                </MenuItem>
+                            </Field>
+                            {/* <Field component={FormikTimePicker} name="time" />
                             <KeyboardTimePicker
                                 margin="normal"
                                 name="time"
@@ -123,9 +189,9 @@ function AddEventForm (props) {
                                 KeyboardButtonProps={{
                                     'aria-label': 'change time',
                                 }}
-                            />
+                            /> */}
                         </Grid>
-                    </MuiPickersUtilsProvider> */}
+                    </MuiPickersUtilsProvider>
 
                     <Field 
                         type="text" 
@@ -180,18 +246,4 @@ function AddEventForm (props) {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        eventList: state.event.eventList,
-        event: state.event.event,
-        isPosting: state.event.isPosting,
-        isSuccessful: state.event.isSuccessful,
-        isError: state.event.isError,
-        error: state.event.error
-    };
-};
-  
-export default connect(
-    mapStateToProps,
-    { postEvent }
-)(AddEventForm);
+export default AddEventForm;

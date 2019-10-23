@@ -7,9 +7,6 @@ import 'date-fns';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
-import { connect } from "react-redux";
-import { postEvent } from '../actions/eventActions';
-
 
 const useStyles = makeStyles(theme => ({
     columnNowrap: {
@@ -26,7 +23,6 @@ function AddEventForm (props) {
     const handleDateChange = date => {
         setSelectedDate(selectedDate);
     };
-    console.log("connected props", props)
 
     return (
         <>
@@ -57,15 +53,6 @@ function AddEventForm (props) {
                     description: values.description,
                     link: values.link,
                     image: values.image, });
-
-                props.postEvent({ 
-                    title: values.title, 
-                    date: values.date,
-                    time: values.time,
-                    location: values.location,
-                    description: values.description,
-                    link: values.link,
-                    image: values.image, });
                 actions.setSubmitting(false);
             }}
         >
@@ -81,25 +68,7 @@ function AddEventForm (props) {
                         fullWidth 
                     />
 
-                    <Field 
-                        type="text" 
-                        name="date" 
-                        label="Event Date"
-                        component={TextField}
-                        margin="normal"
-                        fullWidth 
-                    />
-
-                    <Field 
-                        type="text" 
-                        name="time" 
-                        label="Event Time"
-                        component={TextField}
-                        margin="normal"
-                        fullWidth 
-                    />
-
-                    {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <Grid container justify="space-around">
                             <KeyboardDatePicker
                                 margin="normal"
@@ -125,7 +94,7 @@ function AddEventForm (props) {
                                 }}
                             />
                         </Grid>
-                    </MuiPickersUtilsProvider> */}
+                    </MuiPickersUtilsProvider>
 
                     <Field 
                         type="text" 
@@ -180,18 +149,4 @@ function AddEventForm (props) {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        eventList: state.event.eventList,
-        event: state.event.event,
-        isPosting: state.event.isPosting,
-        isSuccessful: state.event.isSuccessful,
-        isError: state.event.isError,
-        error: state.event.error
-    };
-};
-  
-export default connect(
-    mapStateToProps,
-    { postEvent }
-)(AddEventForm);
+export default AddEventForm;

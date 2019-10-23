@@ -1,9 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { connect } from "react-redux";
 // import PrivateRoute from "../utils/PrivateRoute.js";
-import axios from 'axios';
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 
 
