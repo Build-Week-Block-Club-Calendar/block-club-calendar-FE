@@ -11,6 +11,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 import { red } from '@material-ui/core/colors';
 
+import EditEventButton from './events/EditEventButton';
+
 const useStyles = makeStyles(theme => ({
   card: {
     width: '90%',
@@ -77,7 +79,7 @@ export default function CalendarEvent(props) {
   const classes = useStyles();
   const { event } = props;
   
-  console.log("props from event", props)
+  // console.log("props from event", props)
 
     return (
         <Card className={classes.card}>
@@ -108,13 +110,14 @@ export default function CalendarEvent(props) {
                 >
                   Going
                 </Button>
-                <Button 
+                <EditEventButton values={event}/>
+                {/* <Button 
                   variant="contained" 
                   color="secondary"
                   startIcon={<EditIcon />}
                 >
                   Edit
-                </Button>
+                </Button> */}
                 <DeleteButton
                   variant="contained"
                   startIcon={<DeleteIcon />}

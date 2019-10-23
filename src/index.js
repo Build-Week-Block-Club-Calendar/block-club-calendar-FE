@@ -13,6 +13,8 @@ import rootReducer from './reducers';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from './utils/theme';
+// import MomentUtils from '@date-io/moment';
+// import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 // redux devtools integration
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -27,10 +29,12 @@ const rootElement = document.getElementById('root');
 ReactDOM.render(
     <Provider store={store}>
         <ThemeProvider theme={theme}>
-            <Router>
-                <CssBaseline />
-                <App />
-            </Router>
+            {/* <MuiPickersUtilsProvider utils={MomentUtils}> */}
+                <Router>
+                    <CssBaseline />
+                    <App />
+                </Router>
+            {/* </MuiPickersUtilsProvider> */}
         </ThemeProvider>
     </Provider>, 
     rootElement);

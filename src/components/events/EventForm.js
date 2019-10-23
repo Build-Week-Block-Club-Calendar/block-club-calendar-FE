@@ -1,15 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Formik, Form, Field } from "formik";
 import { TextField } from 'formik-material-ui';
+
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import 'date-fns';
-import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
-import { connect } from "react-redux";
-import { postEvent } from '../actions/eventActions';
 
+import FormikDatePicker from './EventFormPickers';
 
 const useStyles = makeStyles(theme => ({
     columnNowrap: {
@@ -19,20 +15,40 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-function AddEventForm (props) {
+function EventForm (props) {
     const classes = useStyles();
-    const [selectedDate, setSelectedDate] = React.useState(new Date());
 
-    const handleDateChange = date => {
-        setSelectedDate(selectedDate);
-    };
-    console.log("connected props", props)
+    console.log("props from EventForm", props)
+
+    let buttonText
+    if (props.type === "add") {
+        buttonText = "Create Event"
+    } else if (props.type === "edit") {
+        buttonText = "Update Event"
+    }
 
     return (
         <>
 
         <Formik
-            initialValues={{ title: "", date: "", time: "", location: "", description: "", link: "", image: "" }}
+            initialValues={
+                props.values 
+                    ?  { 
+                        title: props.values.Title, 
+                        date: props.values.Date, 
+                        time: props.values.Time, 
+                        location: props.values.Location, 
+                        description: props.values.Description, 
+                        link: props.values.Link, 
+                        image: props.values.Image } 
+                    : { 
+                        title: "", 
+                        date: "", 
+                        time: "", 
+                        location: "", 
+                        description: "", 
+                        link: "", 
+                        image: "" }}
             validate={values => {
                 let errors = {};
                 if (values.title === "") {
@@ -51,26 +67,25 @@ function AddEventForm (props) {
                 alert("Form is validated! Submitting the form...");
                 console.log("user input for new event", { 
                     title: values.title, 
-                    date: values.date,
-                    time: values.time,
+                    date: `${values.date}`,
+                    time: `${values.date}`,
                     location: values.location,
                     description: values.description,
                     link: values.link,
                     image: values.image, });
-
-                props.postEvent({ 
+                props.action({ 
                     title: values.title, 
-                    date: values.date,
-                    time: values.time,
+                    date: `${values.date}`,
+                    time: `${values.date}`,
                     location: values.location,
                     description: values.description,
                     link: values.link,
-                    image: values.image, });
+                    image: values.image, })
                 actions.setSubmitting(false);
             }}
         >
 
-            {() => (
+            {({ isSubmitting, setFieldValue }) => (
                 <Form className={classes.columnNowrap}>
                     <Field 
                         type="text" 
@@ -81,51 +96,7 @@ function AddEventForm (props) {
                         fullWidth 
                     />
 
-                    <Field 
-                        type="text" 
-                        name="date" 
-                        label="Event Date"
-                        component={TextField}
-                        margin="normal"
-                        fullWidth 
-                    />
-
-                    <Field 
-                        type="text" 
-                        name="time" 
-                        label="Event Time"
-                        component={TextField}
-                        margin="normal"
-                        fullWidth 
-                    />
-
-                    {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <Grid container justify="space-around">
-                            <KeyboardDatePicker
-                                margin="normal"
-                                name="date"
-                                id="date-picker-dialog"
-                                label="Event Date"
-                                format="MM/dd/yyyy"
-                                value={selectedDate}
-                                onChange={handleDateChange}
-                                KeyboardButtonProps={{
-                                    'aria-label': 'change date',
-                                }}
-                            />
-                            <KeyboardTimePicker
-                                margin="normal"
-                                name="time"
-                                id="time-picker"
-                                label="Event Time"
-                                value={selectedDate}
-                                onChange={handleDateChange}
-                                KeyboardButtonProps={{
-                                    'aria-label': 'change time',
-                                }}
-                            />
-                        </Grid>
-                    </MuiPickersUtilsProvider> */}
+                    <Field component={FormikDatePicker} name="date" />
 
                     <Field 
                         type="text" 
@@ -168,7 +139,7 @@ function AddEventForm (props) {
                         variant="contained"
                         color="primary"
                     >
-                        Create Event
+                        {buttonText}
                     </Button>
                 </Form> 
             )}
@@ -180,18 +151,4 @@ function AddEventForm (props) {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        eventList: state.event.eventList,
-        event: state.event.event,
-        isPosting: state.event.isPosting,
-        isSuccessful: state.event.isSuccessful,
-        isError: state.event.isError,
-        error: state.event.error
-    };
-};
-  
-export default connect(
-    mapStateToProps,
-    { postEvent }
-)(AddEventForm);
+export default EventForm;

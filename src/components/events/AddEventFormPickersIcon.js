@@ -3,10 +3,10 @@ import { Formik, Form, Field } from "formik";
 import { TextField } from 'formik-material-ui';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import 'date-fns';
 import Grid from '@material-ui/core/Grid';
+import MomentUtils from '@date-io/moment';
 import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker, DatePicker } from '@material-ui/pickers';
 
 const useStyles = makeStyles(theme => ({
     columnNowrap: {
@@ -16,19 +16,52 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
+  const FormikDatePicker = ({
+    name,
+    form: { setFieldValue },
+    field: { value },
+    ...rest
+  }) => {
+    // console.log(rest);
+    return (
+      <DatePicker
+        name={name}
+        // keyboard
+        clearable
+        autoOk
+        label="Event Date"
+        format="dd/MM/yyyy"
+        // handle clearing outside => pass plain array if you are not controlling value outside
+        // mask={value =>
+        //   value
+        //     ? [/[0-3]/, /\d/, "/", /0|1/, /\d/, "/", /1|2/, /\d/, /\d/, /\d/]
+        //     : []
+        // }
+        // disableOpenOnEnter
+        onChange={value => {
+          console.log("setting value to", value);
+          setFieldValue("date", value);
+        }}
+        value={value}
+        animateYearScrolling={false}
+      />
+    );
+  };
+
 function AddEventForm (props) {
     const classes = useStyles();
-    const [selectedDate, setSelectedDate] = React.useState(new Date());
 
-    const handleDateChange = date => {
-        setSelectedDate(selectedDate);
-    };
+    // const [selectedDate, setSelectedDate] = useState(new Date());
+
+    // const handleDateChange = date => {
+    //     setSelectedDate(selectedDate);
+    // };
 
     return (
         <>
 
         <Formik
-            initialValues={{ title: "", date: "", time: "", location: "", description: "", link: "", image: "" }}
+            initialValues={{ title: "", date: null, time: "", location: "", description: "", link: "", image: "" }}
             validate={values => {
                 let errors = {};
                 if (values.title === "") {
@@ -57,7 +90,7 @@ function AddEventForm (props) {
             }}
         >
 
-            {() => (
+            {({ isSubmitting, setFieldValue }) => (
                 <Form className={classes.columnNowrap}>
                     <Field 
                         type="text" 
@@ -68,21 +101,33 @@ function AddEventForm (props) {
                         fullWidth 
                     />
 
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <Grid container justify="space-around">
-                            <KeyboardDatePicker
-                                margin="normal"
-                                name="date"
-                                id="date-picker-dialog"
-                                label="Event Date"
-                                format="MM/dd/yyyy"
-                                value={selectedDate}
-                                onChange={handleDateChange}
-                                KeyboardButtonProps={{
-                                    'aria-label': 'change date',
-                                }}
-                            />
-                            <KeyboardTimePicker
+                        <Grid container justify="space-around">                    
+                            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+
+                            <DatePicker
+    //   name={name}
+      keyboard
+      clearable
+      autoOk
+      label="Masked input"
+      format="dd/MM/yyyy"
+      placeholder="10/10/2018"
+      // handle clearing outside => pass plain array if you are not controlling value outside
+      mask={value =>
+        value
+          ? [/[0-3]/, /\d/, "/", /0|1/, /\d/, "/", /1|2/, /\d/, /\d/, /\d/]
+          : []
+      }
+      disableOpenOnEnter
+    //   onChange={value => {
+    //     console.log("setting value to", value);
+    //     setFieldValue("date", value);
+    //   }}
+    //   value={value}
+      animateYearScrolling={false}
+    />
+                            </MuiPickersUtilsProvider>
+                            {/* <KeyboardTimePicker
                                 margin="normal"
                                 name="time"
                                 id="time-picker"
@@ -92,9 +137,8 @@ function AddEventForm (props) {
                                 KeyboardButtonProps={{
                                     'aria-label': 'change time',
                                 }}
-                            />
+                            /> */}
                         </Grid>
-                    </MuiPickersUtilsProvider>
 
                     <Field 
                         type="text" 

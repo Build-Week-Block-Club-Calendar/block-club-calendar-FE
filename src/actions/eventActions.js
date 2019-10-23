@@ -7,7 +7,7 @@ export const GET_EVENT_SUCCESS = "GET_EVENT_SUCCESS";
 export const POST_EVENT_START = "POST_EVENT_START";
 export const PUT_EVENT_START = "PUT_EVENT_START";
 export const DEL_EVENT_START = "DEL_EVENT_START";
-export const EVENT_SUCCESS = "POST_EVENT_SUCCESS";
+export const EVENT_SUCCESS = "EVENT_SUCCESS";
 export const EVENT_FAIL = "EVENT_FAIL";
 
 export const getEventList = () => dispatch => {
@@ -19,7 +19,7 @@ export const getEventList = () => dispatch => {
       dispatch({ type: GET_EVENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log("I'm an error for postEvent", err);
+      // console.log("I'm an error for postEvent", err);
       dispatch({ type: EVENT_FAIL, payload: err })
     });
 };
@@ -33,7 +33,7 @@ export const postEvent = (newEvent) => dispatch => {
       dispatch({ type: EVENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log("I'm an error for postEvent", err);
+      // console.log("I'm an error for postEvent", err);
       dispatch({ type: EVENT_FAIL, payload: err })
     });
 };
@@ -41,13 +41,13 @@ export const postEvent = (newEvent) => dispatch => {
 export const updateEvent = (editedEvent) => dispatch => {
   dispatch({ type: PUT_EVENT_START, payload: editedEvent });
   axiosWithAuth()
-    .put(`/api/events`, editedEvent)
+    .put(`/api/events/${editedEvent.id}`, editedEvent)
     .then(res => {
       console.log("PUT_EVENT RES: ", res.data);
       dispatch({ type: EVENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log("I'm an error for putEvent", err);
+      // console.log("I'm an error for putEvent", err);
       dispatch({ type: EVENT_FAIL, payload: err })
     });
 };
@@ -61,7 +61,7 @@ export const deleteEvent = (editedEvent) => dispatch => {
       dispatch({ type: EVENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log("I'm an error for deleteEvent", err);
+      // console.log("I'm an error for deleteEvent", err);
       dispatch({ type: EVENT_FAIL, payload: err })
     });
 };

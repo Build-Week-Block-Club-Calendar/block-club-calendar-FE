@@ -17,7 +17,7 @@ function CalendarList(props) {
 // console.log("props.deleteEvent", props.deleteEvent)
   useEffect(() => {
     props.getEventList()
-  }, []);
+  }, [props.isPosting]);
 
   
     return (
@@ -35,6 +35,7 @@ function CalendarList(props) {
 const mapStateToProps = state => {
     return {
       eventList: state.event.eventList,
+      isFetching: state.event.isFetching,
       isPosting: state.event.isPosting,
       isSuccessful: state.event.isSuccessful,
       isError: state.event.isError,

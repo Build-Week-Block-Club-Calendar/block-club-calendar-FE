@@ -8,7 +8,7 @@ import Box from '@material-ui/core/Box';
 import Signup from "../components/auth/Signup";
 import Login from "../components/auth/Login";
 import CalendarList from "../components/CalendarList";
-import AddEvent from "../components/AddEvent";
+import AddEvent from "../components/events/AddEvent";
 // import SignupMUI from "../components/auth/Signu_mui";
 
 
