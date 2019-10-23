@@ -10,7 +10,10 @@ import Content from './pages/Content';
 
 const useStyles = makeStyles(theme => ({
   root: {
-      background: '#ffffe4'
+      background: '#ffffe4',
+      // maxWidth: "1280px",
+      // margin: "auto"
+      
   },
 }));
 
@@ -18,13 +21,13 @@ function App() {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="lg">
+    // <Container maxWidth="lg">
     <Paper className={classes.root}>
       <Navbar />
       <Content />
       {/* <Footer /> */}
     </Paper>
-    </Container>
+    // </Container>
   );
 }
 
