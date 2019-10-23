@@ -12,7 +12,7 @@ import rootReducer from './reducers';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import theme from './utils/theme'
+import theme from './utils/theme';
 
 // redux devtools integration
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
