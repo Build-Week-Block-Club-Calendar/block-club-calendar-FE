@@ -1,50 +1,43 @@
-// import React from 'react'
-// import { Formik, Field } from 'formik'
-// import { TextField } from 'formik-material-ui'
-// import * as Yup from 'yup';
+import React from 'react';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import AddEventForm from './AddEventForm';
 
-// function AddEvent () {
-//     <div>
-//       <h1>My Form</h1>
-//       <Formik
-//         initialValues={{ email: '', color: 'red', firstName: '' }}
-//         onSubmit={(values, actions) => {
-//           setTimeout(() => {
-//             alert(JSON.stringify(values, null, 2));
-//             actions.setSubmitting(false);
-//           }, 1000);
-//         }}
-//         render={(props: FormikProps<Values>) => (
-//           <form onSubmit={props.handleSubmit}>
-//             <Field type="email" name="email" placeholder="Email" />
-//             <Field component="select" name="color">
-//               <option value="red">Red</option>
-//               <option value="green">Green</option>
-//               <option value="blue">Blue</option>
-//             </Field>
-//             <Field name="firstName" component={CustomInputComponent} />
-//             <Field
-//               name="lastName"
-//               render={({ field /* _form */ }) => (
-//                 <input {...field} placeholder="lastName" />
-//               )}
-//             />
-//             <button type="submit">Submit</button>
-//           </form>
-//         )}
-//       />
-//     </div>
-// };-
-  
-//   const CustomInputComponent = ({
-//     field, // { name, value, onChange, onBlur }
-//     form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-//     ...props
-//   }) => (
-//     <div>
-//       <input type="text" {...field} {...props} />
-//       {touched[field.name] &&
-//         errors[field.name] && <div className="error">{errors[field.name]}</div>}
-//     </div>
-//   );
-// export default AddEvent;
+const useStyles = makeStyles(theme => ({
+    root: {
+        padding: theme.spacing(3, 2),
+        display: 'flex',
+        flexFlow: 'column nowrap',
+        alignItems: 'center',
+    },
+  }));
+
+function AddEvent (props) {
+    const classes = useStyles();
+
+    return (
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justify="flex-start"
+          style={{ minHeight: '100vh' }}
+        >
+            <Grid item xs={12} med={4}>
+                <Paper className={classes.root}>
+                    <Typography variant="h4" component="h2">
+                    Add Event to Block Club Calendar
+                    </Typography>
+                    <AddEventForm />
+                </Paper>
+             </Grid>
+        </Grid> 
+    )
+
+}
+
+
+export default AddEvent;
