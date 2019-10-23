@@ -48,9 +48,9 @@ const useStyles = makeStyles(theme => ({
     paddingBottom: theme.spacing(1),
   },
   media: {
-    border: "1px solid black",
-    width: "100%",
-    height: "100%"
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   deletebutton: {
     marginTop: 15,
@@ -86,6 +86,8 @@ const DeleteButton = withStyles(theme => ({
 export default function CalendarEvent(props) {
   const classes = useStyles();
   const { event } = props;
+
+  
   
   // console.log("props from event", props)
 
@@ -121,30 +123,30 @@ export default function CalendarEvent(props) {
                   >
                     Going
                   </Button>
-                  <EditEventButton values={event}/>
-                  {/* <Button 
-                    variant="contained" 
-                    color="secondary"
-                    startIcon={<EditIcon />}
-                  >
-                    Edit
-                  </Button> */}
-                  <DeleteButton
+                  
+                  
+                  { props.showEdit ? (<EditEventButton values={event}/>) : (null) }
+
+                  { props.showDelete ? (<DeleteButton
                     variant="contained"
                     startIcon={<DeleteIcon />}
                     onClick={() => props.delete(event)}
                   > 
                     Delete
-                  </DeleteButton>
+                  </DeleteButton>) : (null) }
+                  
                 </CardActions>
               </CardContent>
             </Grid>
-            <Grid item xs={12} sm={12} md={6} className={classes.redBorder}>
-              <CardMedia
+            <Grid item xs={12} sm={12} md={6} className={classes.media}>
+              <img src={event.Image} alt={event.Title} />
+              {/* <CardMedia
+                  component="img"
                   className={classes.media}
-                  image={event.Image}
+                  src={event.Image}
                   title={event.Title}
-              />
+                  alt={event.Title}
+              /> */}
             </Grid>
           </Grid>
         </Card>   

@@ -54,7 +54,25 @@ export const eventReducer = (state = initialState, action) => {
                 isError: false,
                 error: ''
             }
+        case a.PUT_EVENT_ADMIN_START:
+            return {
+                ...state,
+                event: action.payload,
+                isPosting: true,
+                isSuccessful: false,
+                isError: false,
+                error: ''
+            }
         case a.DEL_EVENT_START:
+            return {
+                ...state,
+                event: action.payload,
+                isPosting: true,
+                isSuccessful: false,
+                isError: false,
+                error: ''
+            }
+        case a.DEL_EVENT_ADMIN_START:
             return {
                 ...state,
                 event: action.payload,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
-import { updateEvent } from '../../actions/eventActions';
+import { updateEvent, updateEventAdmin } from '../../actions/eventActions';
 
 import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
@@ -28,10 +28,17 @@ function EditEventButton(props) {
   };
 
   const editEvent = (values) => {
+    if (props.user.role === "admin") {
+      props.updateEventAdmin({
+      ...values,
+      id: props.values.id
+      });
+      return }
     props.updateEvent({
       ...values,
       id: props.values.id
-    })
+    });
+    return
   }
 
 
@@ -67,6 +74,7 @@ function EditEventButton(props) {
 
 const mapStateToProps = state => {
     return {
+        user: state.auth.user,
         eventList: state.event.eventList,
         event: state.event.event,
         isPosting: state.event.isPosting,
@@ -78,5 +86,5 @@ const mapStateToProps = state => {
   
 export default connect(
     mapStateToProps,
-    { updateEvent }
+    { updateEvent, updateEventAdmin }
 )(EditEventButton);

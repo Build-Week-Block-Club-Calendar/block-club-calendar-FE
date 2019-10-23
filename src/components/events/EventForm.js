@@ -128,7 +128,7 @@ function EventForm (props) {
                     <Field 
                         type="text" 
                         name="image" 
-                        label="Image Upload"
+                        label="URL to Hosted Image"
                         component={TextField}
                         margin="normal"
                         fullWidth 

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 // import axios from 'axios';
 import { connect } from "react-redux";
-import { getEventList, deleteEvent } from "../actions/eventActions";
+import { getEventList, deleteEvent, deleteEventAdmin } from "../actions/eventActions";
 
 import Box from '@material-ui/core/Box';
 
@@ -21,16 +21,33 @@ function CalendarList(props) {
   useEffect(() => {
     props.getEventList()
   }, [props.isPosting]);
-
   
     return (
         <Box display="flex" flexDirection="Column" flexWrap="nowrap" alignItems="center">
-            {props.eventList.map(event => (
-            <CalendarEvent 
+            {props.eventList.map(event => {
+              if (props.user.role === "admin") {
+                return <CalendarEvent 
+                  key={event.id} 
+                  event={event}
+                  showDelete={true} 
+                  showEdit={true} 
+                  delete={props.deleteEventAdmin} />
+              } else if (event.Organizer === props.user.username) {
+                // console.log("inside the if", props.user.username)
+                return <CalendarEvent 
+                  key={event.id} 
+                  event={event}
+                  showDelete={true} 
+                  showEdit={true} 
+                  delete={props.deleteEvent} />  
+              }
+            // console.log("inside the else", props.user.username)
+            return <CalendarEvent 
               key={event.id} 
-              event={event} 
-              delete={props.deleteEvent} />   
-            ))}
+              event={event}
+              showDelete={false} 
+              showEdit={false} 
+              delete={props.deleteEvent} /> })}
             <AddEventFab />
         </Box>
     );
@@ -38,6 +55,7 @@ function CalendarList(props) {
 
 const mapStateToProps = state => {
     return {
+      user: state.auth.user,
       eventList: state.event.eventList,
       isFetching: state.event.isFetching,
       isPosting: state.event.isPosting,
@@ -49,5 +67,5 @@ const mapStateToProps = state => {
   
 export default connect(
     mapStateToProps,
-    { getEventList, deleteEvent }
+    { getEventList, deleteEvent, deleteEventAdmin }
 )(CalendarList);
