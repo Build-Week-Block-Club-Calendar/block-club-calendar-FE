@@ -7,7 +7,7 @@ export const GET_EVENT_SUCCESS = "GET_EVENT_SUCCESS";
 export const POST_EVENT_START = "POST_EVENT_START";
 export const PUT_EVENT_START = "PUT_EVENT_START";
 export const DEL_EVENT_START = "DEL_EVENT_START";
-export const EVENT_SUCCESS = "POST_EVENT_SUCCESS";
+export const EVENT_SUCCESS = "EVENT_SUCCESS";
 export const EVENT_FAIL = "EVENT_FAIL";
 
 export const getEventList = () => dispatch => {

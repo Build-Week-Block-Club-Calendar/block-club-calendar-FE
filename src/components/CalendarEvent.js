@@ -77,7 +77,7 @@ export default function CalendarEvent(props) {
   const classes = useStyles();
   const { event } = props;
   
-  console.log("props from event", props)
+  // console.log("props from event", props)
 
     return (
         <Card className={classes.card}>
