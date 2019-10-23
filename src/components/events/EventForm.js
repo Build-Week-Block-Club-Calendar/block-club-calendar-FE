@@ -1,12 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Formik, Form, Field } from "formik";
 import { TextField } from 'formik-material-ui';
+
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import 'date-fns';
-import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
+
+import FormikDatePicker from './EventFormPickers';
 
 const useStyles = makeStyles(theme => ({
     columnNowrap: {
@@ -16,19 +15,26 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-function AddEventForm (props) {
+function EventForm (props) {
     const classes = useStyles();
-    const [selectedDate, setSelectedDate] = React.useState(new Date());
 
-    const handleDateChange = date => {
-        setSelectedDate(selectedDate);
-    };
+    console.log("props from EventForm", props)
 
     return (
         <>
 
         <Formik
-            initialValues={{ title: "", date: "", time: "", location: "", description: "", link: "", image: "" }}
+            initialValues={
+                props.values 
+                    ? props.values 
+                    : { 
+                        title: "", 
+                        date: "", 
+                        time: "", 
+                        location: "", 
+                        description: "", 
+                        link: "", 
+                        image: "" }}
             validate={values => {
                 let errors = {};
                 if (values.title === "") {
@@ -47,17 +53,25 @@ function AddEventForm (props) {
                 alert("Form is validated! Submitting the form...");
                 console.log("user input for new event", { 
                     title: values.title, 
-                    date: values.date,
-                    time: values.time,
+                    date: `${values.date}`,
+                    time: `${values.date}`,
                     location: values.location,
                     description: values.description,
                     link: values.link,
                     image: values.image, });
+                props.action({ 
+                    title: values.title, 
+                    date: `${values.date}`,
+                    time: `${values.date}`,
+                    location: values.location,
+                    description: values.description,
+                    link: values.link,
+                    image: values.image, })
                 actions.setSubmitting(false);
             }}
         >
 
-            {() => (
+            {({ isSubmitting, setFieldValue }) => (
                 <Form className={classes.columnNowrap}>
                     <Field 
                         type="text" 
@@ -68,33 +82,7 @@ function AddEventForm (props) {
                         fullWidth 
                     />
 
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <Grid container justify="space-around">
-                            <KeyboardDatePicker
-                                margin="normal"
-                                name="date"
-                                id="date-picker-dialog"
-                                label="Event Date"
-                                format="MM/dd/yyyy"
-                                value={selectedDate}
-                                onChange={handleDateChange}
-                                KeyboardButtonProps={{
-                                    'aria-label': 'change date',
-                                }}
-                            />
-                            <KeyboardTimePicker
-                                margin="normal"
-                                name="time"
-                                id="time-picker"
-                                label="Event Time"
-                                value={selectedDate}
-                                onChange={handleDateChange}
-                                KeyboardButtonProps={{
-                                    'aria-label': 'change time',
-                                }}
-                            />
-                        </Grid>
-                    </MuiPickersUtilsProvider>
+                    <Field component={FormikDatePicker} name="date" />
 
                     <Field 
                         type="text" 
@@ -149,4 +137,4 @@ function AddEventForm (props) {
     )
 }
 
-export default AddEventForm;
+export default EventForm;

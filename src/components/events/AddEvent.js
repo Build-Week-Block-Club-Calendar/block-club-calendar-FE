@@ -1,9 +1,13 @@
 import React from 'react';
+import { connect } from "react-redux";
+import { postEvent } from '../../actions/eventActions';
+
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import AddEventForm from './AddEventForm';
+
+import EventForm from './EventForm';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -16,6 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 function AddEvent (props) {
     const classes = useStyles();
+    console.log("props from AddEvent", props)
 
     return (
         <Grid
@@ -28,10 +33,10 @@ function AddEvent (props) {
         >
             <Grid item xs={12} med={4}>
                 <Paper className={classes.root}>
-                    <Typography variant="h4" component="h2">
+                    <Typography variant="h5" component="p">
                     Add Event to Block Club Calendar
                     </Typography>
-                    <AddEventForm />
+                    <EventForm action={props.postEvent} />
                 </Paper>
              </Grid>
         </Grid> 
@@ -39,5 +44,18 @@ function AddEvent (props) {
 
 }
 
-
-export default AddEvent;
+const mapStateToProps = state => {
+    return {
+        eventList: state.event.eventList,
+        event: state.event.event,
+        isPosting: state.event.isPosting,
+        isSuccessful: state.event.isSuccessful,
+        isError: state.event.isError,
+        error: state.event.error
+    };
+};
+  
+export default connect(
+    mapStateToProps,
+    { postEvent }
+)(AddEvent);
