@@ -33,10 +33,11 @@ export const logIn = credentials => dispatch => {
     .then(res => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data })
       localStorage.setItem("token", res.data.token);
-      console.log(res.data)
+      // console.log(res.data)
       dispatch({ type: LOGIN_DECODE, payload: decode(res.data.token) })
     })
     .catch(err => {
       dispatch({ type: LOGIN_FAIL, payload: err })
-      console.log(err)});
+      // console.log(err)
+    });
 };

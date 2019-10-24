@@ -45,8 +45,8 @@ export default function NavBar() {
   } else {
     return (
       <div>
-        <IconButton edge="start" color="inherit" aria-label="menu">
-          <MenuIcon aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} />
+        <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleClick}>
+          <MenuIcon aria-controls="simple-menu" aria-haspopup="true" />
         </IconButton>
         <Menu
           id="simple-menu"

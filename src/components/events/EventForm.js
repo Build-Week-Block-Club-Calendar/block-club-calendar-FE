@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 function EventForm (props) {
     const classes = useStyles();
 
-    console.log("props from EventForm", props)
+    // console.log("props from EventForm", props)
 
     let buttonText
     if (props.type === "add") {

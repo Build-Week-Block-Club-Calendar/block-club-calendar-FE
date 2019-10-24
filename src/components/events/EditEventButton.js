@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import EventForm from './EventForm';
@@ -30,11 +29,15 @@ function EditEventButton(props) {
       ...values,
       id: props.values.id
       });
+      // bad call to force error for testing
+      // props.updateEventAdmin({ id: null });
       return }
     props.updateEvent({
       ...values,
       id: props.values.id
     });
+    // bad call to force error for testing
+    // props.updateEvent({ id: null });
     return
   }
 
@@ -64,7 +67,7 @@ function EditEventButton(props) {
         <DialogTitle id="form-dialog-title">Make Changes to Event Details</DialogTitle>
         <DialogContent>
 
-          <EventForm type="edit" action={() => editEvent(null)} values={props.values} />
+          <EventForm type="edit" action={editEvent} values={props.values} />
 
         </DialogContent>
       </Dialog>
@@ -74,8 +77,8 @@ function EditEventButton(props) {
         <Dialog open={errorOpen} onClose={handleErrorClose} aria-labelledby="form-dialog-title">
           <DialogTitle id="form-dialog-title">Sorry, there is an error</DialogTitle>
           <DialogContent> 
-            <DialogContentText>{`${props.error}`}</DialogContentText>
-            <DialogContentText>Please ensure you are logged in and try again</DialogContentText>
+            <p>{`${props.error}`}</p>
+            <p>Please ensure you are logged in and try again</p>
           </DialogContent>
         </Dialog>
       }
