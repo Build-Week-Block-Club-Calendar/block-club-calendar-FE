@@ -14,7 +14,7 @@ function CalendarList(props) {
 
   useEffect(() => {
     props.getEventList()
-  }, [props.event.isPosting]);
+  }, [props.event.isSuccessful]);
 
   useEffect(() => {
     props.getGoingList()

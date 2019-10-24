@@ -24,7 +24,6 @@ export const goingReducer = (state = initialState, action) => {
                 ...state,
                 goingList: action.payload,
                 isFetching: false,
-                isSuccessful: true,
                 isError: false,
                 error: ''
             }

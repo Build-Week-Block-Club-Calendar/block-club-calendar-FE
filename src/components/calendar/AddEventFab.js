@@ -26,20 +26,29 @@ const useStyles = makeStyles(theme => ({
 function AddEventFab(props) {
   const classes = useStyles();
 
+  // add event form dialog state handlers
   const [open, setOpen] = useState(false);
-
   const handleOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
-  const submitForm = () {
-    
+  
+  const addEvent = (newEvent) => {
+    props.postEvent(null);
+    // props.postEvent(newEvent)
+    handleClose();
   }
 
+  // error message dialog state handlers
+  const [errorOpen, setErrorOpen] = useState(true);
+  const handleErrorOpen = () => {
+    setErrorOpen(true);
+  };
+  const handleErrorClose = () => {
+    setErrorOpen(false);
+  };
 
   return (
     <div>
@@ -65,18 +74,20 @@ function AddEventFab(props) {
         <DialogTitle id="form-dialog-title">Create a New Event</DialogTitle>
         <DialogContent>
 
-          <EventForm type="add" action={props.postEvent} />
+          <EventForm type="add" action={addEvent} />
 
-          {/* <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-          /> */}
         </DialogContent>
       </Dialog>
+
+      {props.isError && 
+        <Dialog open={errorOpen} onClose={handleErrorClose} aria-labelledby="form-dialog-title">
+          <DialogTitle id="form-dialog-title">Sorry, there is an error</DialogTitle>
+          <DialogContent> 
+            <p>{`${props.error}`}</p>
+            <p>Please ensure you are logged in and try again</p>
+          </DialogContent>
+        </Dialog>
+      }
     </div>
   );
 }
