@@ -5,7 +5,6 @@ import { postEvent } from '../../actions/eventActions';
 import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -35,9 +34,9 @@ function AddEventFab(props) {
     setOpen(false);
   };
   
+  // closes the form dialog and posts the event
   const addEvent = (newEvent) => {
-    props.postEvent(null);
-    // props.postEvent(newEvent)
+    props.postEvent(newEvent)
     handleClose();
   }
 
@@ -62,14 +61,8 @@ function AddEventFab(props) {
         <AddIcon className={classes.extendedIcon} />
         Create Event
       </Fab>
-      {/* <Button 
-        variant="contained" 
-        color="secondary"
-        onClick={handleOpen}
-        startIcon={<EditIcon />}
-      >
-        Edit
-      </Button> */}
+
+      {/* form dialog box with EventForm appears when FAB is clicked */}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Create a New Event</DialogTitle>
         <DialogContent>
@@ -79,6 +72,7 @@ function AddEventFab(props) {
         </DialogContent>
       </Dialog>
 
+      {/* error dialog box appears when form EventForm returns an error */}
       {props.isError && 
         <Dialog open={errorOpen} onClose={handleErrorClose} aria-labelledby="form-dialog-title">
           <DialogTitle id="form-dialog-title">Sorry, there is an error</DialogTitle>
