@@ -148,7 +148,7 @@ export default function CalendarEvent(props) {
                     disableFocusRipple
                     onClick={() => props.goingAction(event.id)}
                   >
-                    Going
+                    {`${props.attendees.length} Going`}
                   </GoingButton>) : (<Button 
                     variant="contained" 
                     color="primary"
@@ -160,7 +160,7 @@ export default function CalendarEvent(props) {
                   
                   
                   { props.showEdit ? (<EditEventButton values={event}/>) : (null) }
-
+                  
                   { props.showDelete ? (<DeleteButton
                     variant="contained"
                     startIcon={<DeleteIcon />}
