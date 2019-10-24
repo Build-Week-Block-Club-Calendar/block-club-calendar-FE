@@ -5,7 +5,12 @@
 - **[Frameworks/Libraries Used](#frameworks-and-libraries-used)**<br>
 - **[React Developer 1](#junior-react-developer)**<br>
 - **[React Developer 2](#senior-react-developer)**<br>
-- **[Product Vision Document](#product-vision-document)**<br>
+- **[Product Vision Document](#block-club-calendar)**<br>
+- **[Proposal](####proposal)**<br>
+- **[UX Design](####ux-design)**<br>
+- **[Target Audience](####target-audience)**<br>
+- **[Research](####research)**<br>
+- **[Prototype Key Features](####prototype-key-features)**<br>
 - **[Credits](#credits)**<br>
 
 ## <a name='overview'></a>Overview
@@ -72,9 +77,12 @@ Have you have ever come home from work to find your neighborhood filled with car
   * More general community app. (hiring babysitters, planning community tips, sharing tips).
 
 
-#### Design - Planning
+#### UX Design
 - What design system will you use?
   * Material UI Design / Figma Tool to build out wire frames for design and user flow.
+  
+###### What is the URL to your wireframes?
+https://www.figma.com/file/6nW0gjTv2LscOSROk87Yjr/Block-Club-Cal---Material-UI?node-id=0%3A1
 
 - Color pallette: 
   * Tool to pick with : https://material.io/resources/color/#!/?view.left=1&view.right=0&primary.color=4CAF50&secondary.color=9C27B0
@@ -88,10 +96,6 @@ Have you have ever come home from work to find your neighborhood filled with car
 #### What will your user flow be?
 - START → Enter marketing page / landing home page
 - Landing Page is composed of a Calendar View. Calendar could be a list of cards each composed with necessary event information.          - Somewhere else on the page could be a login button for users to login so they are able to submit North End Detroit events. Admin can review and submit events to the calendar. (Yellow indicates STRETCH goals after MVP is met).
-
-
-###### What is the URL to your wireframes?
-https://www.figma.com/file/6nW0gjTv2LscOSROk87Yjr/Block-Club-Cal---Material-UI?node-id=0%3A1
 
 #### Frameworks - Libraries
 - What 3rd party frameworks/libraries are you considering using?
@@ -146,7 +150,7 @@ _Research thoroughly before writing a single line of code. Solidify the features
 
 **Competing products: Facebook, Nextdoor, Eventbrite**
 
-#### Prototype Key Feature(s)
+#### Prototype Key Features
 This is the “bread and butter” of the app, this is what makes your app yours. Calculate how long it takes to implement these features and triple the time estimated. That way you’ll have plenty of time to finish. It is preferred to drop features and spend more time working on your MVP features if needed.
 
 - User SIGNUP (username, password, email)
