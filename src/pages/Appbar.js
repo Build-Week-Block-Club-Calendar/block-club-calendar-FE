@@ -44,7 +44,12 @@ function Appbar(props) {
     <div className={classes.root}>
       <AppBar position="fixed" >
         <Toolbar>
-          <IconButton edge="start" className={classes.iconSpacer} color="inherit" aria-label="menu">
+          <IconButton 
+            edge="start" 
+            className={classes.iconSpacer} 
+            color="inherit" 
+            aria-label="menu"
+            onClick={() => history.push("/")}>
             <Avatar alt="BCC Logo" src="../../../bcc_logo.png" />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
