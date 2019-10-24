@@ -43,7 +43,7 @@ export const authReducer = (state = initialState, action) => {
                 isPosting: false,
                 isSignedUp: false,
                 isError: true,
-                error: action.payload
+                error: action.payload.response.data.message
             }
         case a.LOGIN_START:
             return {

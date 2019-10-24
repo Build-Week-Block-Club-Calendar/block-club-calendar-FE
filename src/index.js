@@ -13,6 +13,9 @@ import rootReducer from './reducers';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from './utils/theme';
+
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+
 // import MomentUtils from '@date-io/moment';
 // import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 

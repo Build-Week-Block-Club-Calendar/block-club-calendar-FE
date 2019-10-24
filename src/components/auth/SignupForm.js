@@ -2,10 +2,12 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Formik, Form, Field } from "formik";
 import { TextField } from 'formik-material-ui';
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
 import { connect } from "react-redux";
 import { signUp } from "../../actions/authActions";
+
+import Loader from 'react-loader-spinner'
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles(theme => ({
@@ -46,17 +48,17 @@ function SignupForm (props) {
                 return errors;
             }}
             onSubmit={(values, actions) => {
-                alert("Form is validated! Submitting the form...");
-                console.log("credentials from object", { 
-                    username: values.username, 
-                    email: values.email, 
-                    password: values.password });
                 props.signUp({ 
                     username: values.username, 
                     email: values.email, 
                     password: values.password 
                 })
                 actions.setSubmitting(false);
+                // alert("Form is validated! Submitting the form...");
+                // console.log("credentials from object", { 
+                //     username: values.username, 
+                //     email: values.email, 
+                //     password: values.password });
             }}
         >
             {({ isSubmitting }) => (
@@ -88,18 +90,26 @@ function SignupForm (props) {
                         fullWidth 
                     />
 
+                    { props.isPosting ? (<Button 
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        disabled
+                    >
+                        <Loader type="ThreeDots" color="#b6c2b7" height={10} width={45} />
+                    </Button>) : (
                     <Button 
                         type="submit"
                         variant="contained"
                         color="primary"
                     >
-                        Sign Up
-                    </Button>
+                        Log In
+                    </Button>)}
                 </Form> 
             )}
         </Formik>
         {props.isError && (
-            <p className="error">{props.error.message}</p>
+            <p className="error">{props.error}</p>
         )}
         </>
     )
