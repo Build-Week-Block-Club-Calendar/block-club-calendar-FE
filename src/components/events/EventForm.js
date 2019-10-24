@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field } from "formik";
 import { TextField } from 'formik-material-ui';
-import * as moment from 'moment';
+// import * as moment from 'moment';
 
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 function EventForm (props) {
     const classes = useStyles();
 
-    console.log("props from EventForm", props)
+    // console.log("props from EventForm", props)
 
     let buttonText
     if (props.type === "add") {
@@ -62,15 +62,14 @@ function EventForm (props) {
                 return errors;
             }}
             onSubmit={(values, actions) => {
-                alert("Form is validated! Submitting the form...");
-                console.log("user input for new event", { 
-                    title: values.title, 
-                    date: `${values.date}`,
-                    time: `${values.date}`,
-                    location: values.location,
-                    description: values.description,
-                    link: values.link,
-                    image: values.image, });
+                // console.log("user input for new event", { 
+                //     title: values.title, 
+                //     date: `${values.date}`,
+                //     time: `${values.date}`,
+                //     location: values.location,
+                //     description: values.description,
+                //     link: values.link,
+                //     image: values.image, });
                 props.action({ 
                     title: values.title, 
                     date: `${values.date}`,

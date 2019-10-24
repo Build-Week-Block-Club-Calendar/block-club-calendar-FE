@@ -1,5 +1,4 @@
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import decode from "jwt-decode";
 
 // eventReducer create event actions
 export const GET_EVENT_START = "GET_EVENT_START";
@@ -21,7 +20,7 @@ export const getEventList = () => dispatch => {
   axiosWithAuth()
     .get(`/api/events`)
     .then(res => {
-      console.log("GET_EVENT RES: ", res.data);
+      // console.log("GET_EVENT RES: ", res.data);
       dispatch({ type: GET_EVENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -35,7 +34,7 @@ export const postEvent = (newEvent) => dispatch => {
   axiosWithAuth()
     .post(`/api/events`, newEvent)
     .then(res => {
-      console.log("POST_EVENT RES: ", res.data);
+      // console.log("POST_EVENT RES: ", res.data);
       dispatch({ type: EVENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -49,7 +48,7 @@ export const updateEvent = (editedEvent) => dispatch => {
   axiosWithAuth()
     .put(`/api/events/${editedEvent.id}`, editedEvent)
     .then(res => {
-      console.log("PUT_EVENT RES: ", res.data);
+      // console.log("PUT_EVENT RES: ", res.data);
       dispatch({ type: EVENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -63,7 +62,7 @@ export const updateEventAdmin = (editedEvent) => dispatch => {
   axiosWithAuth()
     .put(`/api/admin/${editedEvent.id}`, editedEvent)
     .then(res => {
-      console.log("PUT_EVENT RES: ", res.data);
+      // console.log("PUT_EVENT RES: ", res.data);
       dispatch({ type: EVENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -77,7 +76,7 @@ export const deleteEvent = (editedEvent) => dispatch => {
   axiosWithAuth()
     .delete(`/api/events/${editedEvent.id}`)
     .then(res => {
-      console.log("DELETE_EVENT RES: ", res.data);
+      // console.log("DELETE_EVENT RES: ", res.data);
       dispatch({ type: EVENT_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -91,7 +90,7 @@ export const deleteEventAdmin = (editedEvent) => dispatch => {
   axiosWithAuth()
     .delete(`/api/admin/${editedEvent.id}`)
     .then(res => {
-      console.log("DELETE_EVENT RES: ", res.data);
+      // console.log("DELETE_EVENT RES: ", res.data);
       dispatch({ type: EVENT_SUCCESS, payload: res.data });
     })
     .catch(err => {

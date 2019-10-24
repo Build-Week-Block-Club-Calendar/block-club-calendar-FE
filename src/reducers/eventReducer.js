@@ -32,7 +32,6 @@ export const eventReducer = (state = initialState, action) => {
                 ...state,
                 eventList: action.payload,
                 isFetching: false,
-                isSuccessful: true,
                 isError: false,
                 error: ''
             }
@@ -95,7 +94,7 @@ export const eventReducer = (state = initialState, action) => {
                 isPosting: false,
                 isSuccessful: false,
                 isError: true,
-                error: action.payload
+                error: action.payload.response.data.message
             }
         default:
             return state;

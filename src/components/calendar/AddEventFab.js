@@ -5,15 +5,11 @@ import { postEvent } from '../../actions/eventActions';
 import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-
-import Button from '@material-ui/core/Button';
-import EditIcon from '@material-ui/icons/Edit';
-
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import EventForm from './EventForm';
+import EventForm from '../events/EventForm';
 
 const useStyles = makeStyles(theme => ({
   fab: {
@@ -29,23 +25,29 @@ const useStyles = makeStyles(theme => ({
 function AddEventFab(props) {
   const classes = useStyles();
 
+  // event form dialog state handlers
   const [open, setOpen] = useState(false);
-
   const handleOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
-  const editEvent = (values) => {
-    props.updateEvent({
-      ...values,
-      id: props.values.id
-    })
+  
+  // closes the form dialog and posts the event
+  const addEvent = (newEvent) => {
+    props.postEvent(newEvent)
+    handleClose();
   }
 
+  // error message dialog state handlers
+  const [errorOpen, setErrorOpen] = useState(true);
+  // const handleErrorOpen = () => {
+  //   setErrorOpen(true);
+  // };
+  const handleErrorClose = () => {
+    setErrorOpen(false);
+  };
 
   return (
     <div>
@@ -59,30 +61,27 @@ function AddEventFab(props) {
         <AddIcon className={classes.extendedIcon} />
         Create Event
       </Fab>
-      {/* <Button 
-        variant="contained" 
-        color="secondary"
-        onClick={handleOpen}
-        startIcon={<EditIcon />}
-      >
-        Edit
-      </Button> */}
+
+      {/* form dialog box with EventForm appears when FAB is clicked */}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Create a New Event</DialogTitle>
         <DialogContent>
 
-          <EventForm type="add" action={props.postEvent} />
+          <EventForm type="add" action={addEvent} />
 
-          {/* <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-          /> */}
         </DialogContent>
       </Dialog>
+
+      {/* error dialog box appears when form EventForm returns an error */}
+      {props.isError && 
+        <Dialog open={errorOpen} onClose={handleErrorClose} aria-labelledby="form-dialog-title">
+          <DialogTitle id="form-dialog-title">Sorry, there is an error</DialogTitle>
+          <DialogContent> 
+            <p>{`${props.error}`}</p>
+            <p>Please ensure you are logged in and try again</p>
+          </DialogContent>
+        </Dialog>
+      }
     </div>
   );
 }

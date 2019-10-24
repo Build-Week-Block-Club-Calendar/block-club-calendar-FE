@@ -1,24 +1,25 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect} from 'react';
 // import axios from 'axios';
 import { connect } from "react-redux";
-import { getEventList, deleteEvent, deleteEventAdmin } from "../actions/eventActions";
-import { getGoingList, postGoing } from "../actions/goingActions";
+import { getEventList, deleteEvent, deleteEventAdmin } from "../../actions/eventActions";
+import { getGoingList, postGoing } from "../../actions/goingActions";
 
 import Box from '@material-ui/core/Box';
 
 import CalendarEvent from './CalendarEvent';
-import AddEventFab from './events/AddEventFab';
+import AddEventFab from './AddEventFab';
 
 
 function CalendarList(props) {
+  const { getEventList, getGoingList } = props;
 
   useEffect(() => {
-    props.getEventList()
-  }, [props.event.isPosting]);
+    getEventList()
+  }, [props.event.isSuccessful, getEventList]);
 
   useEffect(() => {
-    props.getGoingList()
-  }, [props.going.isPosting]);
+    getGoingList()
+  }, [props.going.isPosting, getGoingList]);
 
   const goingAction = (id) => {
     if (props.auth.isLoggedIn) {
@@ -42,11 +43,7 @@ function CalendarList(props) {
                 // console.log(`you, ${props.auth.user.username}, are going to ${event.Title}`)
                 isGoing = true;
               }
-              // let showGoing = false;
-              // if (props.going.goingList
-              //   .filter(entry => entry.Event === event.Title)
-              //   .map(entry => entry.Username === props.auth.user.username);
-              console.log(`event attendees for ${event.Title}`, eventAttendees);
+              // console.log(`event attendees for ${event.Title}`, eventAttendees);
               if (props.auth.user.role === "admin") {
                 return <CalendarEvent 
                   key={event.id} 

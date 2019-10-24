@@ -6,40 +6,49 @@ import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
-
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
 
 import EventForm from './EventForm';
 
 function EditEventButton(props) {
-  const [open, setOpen] = useState(false);
 
+  // event form dialog state handlers
+  const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
 
+  // close the form dialog and puts the event to correct endpoint for role
   const editEvent = (values) => {
+    handleClose();
     if (props.user.role === "admin") {
       props.updateEventAdmin({
       ...values,
       id: props.values.id
       });
+      // bad call to force error for testing
+      // props.updateEventAdmin({ id: null });
       return }
     props.updateEvent({
       ...values,
       id: props.values.id
     });
+    // bad call to force error for testing
+    // props.updateEvent({ id: null });
     return
   }
+
+  // error message dialog state handlers
+  const [errorOpen, setErrorOpen] = useState(true);
+  // const handleErrorOpen = () => {
+  //   setErrorOpen(true);
+  // };
+  const handleErrorClose = () => {
+    setErrorOpen(false);
+  };
 
 
   return (
@@ -52,22 +61,27 @@ function EditEventButton(props) {
       >
         Edit
       </Button>
+
+      {/* form dialog box with EventForm appears when edit button is clicked */}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Make Changes to Event Details</DialogTitle>
         <DialogContent>
 
           <EventForm type="edit" action={editEvent} values={props.values} />
 
-          {/* <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-          /> */}
         </DialogContent>
       </Dialog>
+
+      {/* error dialog box appears when form EventForm returns an error */}
+      {props.isError && 
+        <Dialog open={errorOpen} onClose={handleErrorClose} aria-labelledby="form-dialog-title">
+          <DialogTitle id="form-dialog-title">Sorry, there is an error</DialogTitle>
+          <DialogContent> 
+            <p>{`${props.error}`}</p>
+            <p>Please ensure you are logged in and try again</p>
+          </DialogContent>
+        </Dialog>
+      }
     </div>
   );
 }
