@@ -3,8 +3,8 @@
 ## Table of Contents
 
 - **[Frameworks/Libraries Used](#frameworks-and-libraries-used)**<br>
-- **[React Developer 1](#react-developer-1)**<br>
-- **[React Developer 2](#react-developer-2)**<br>
+- **[React Developer 1](#junior-react-developer)**<br>
+- **[React Developer 2](#senior-react-developer)**<br>
 - **[Credits](#credits)**<br>
 
 ## <a name='overview'></a>Overview
@@ -15,12 +15,12 @@ Front End Tech | Design System | Validation | Routing | Forms
 | ----- | ----------------- | -------------------- | --------------------- | ------------------ |
 React | Material UI / Design | Yup | Client Side Routing with React Router | Formik |
 
-## React Developer 1
+## Junior React Developer
 Applied JavaScript | React| Single Page Application | TeamWork Capabilities |
 | --------------------- | ---------------------- | --------------------- | -------------------- |
 Incorporated third party animation via zoom in material UI library. Array methods were used to dynamically render HTML elements | Created dynamic functional components and showcased proper usage of state and props with small reusable components. Usage of webHooks to manage state. | Used Axios to perform GET HTTP requests to database for list of events.  | Pair Programmed with React 2 Dev and Back End Architect to deliver top product |
 
-## React Developer 2
+## Senior React Developer
 React Application | HTTP/AJAX | Sate Management | TeamWork Capabilities |
 | --------------------- | ---------------------- | --------------------- | -------------------- |
 App was set up in a manner that is conducive to a team project environment. Project is organized well on GitHub. | CRUD operations drove the application. Token authentication handeled correctly. HTTP requests handled logically in was cohesive with app's state management system. | Managed state in a very coherent system at all levels of the app - global state management, component tree state management, and individual component management. The system is easy to understand and use. Architected it in such a way that it is reusable for a lot of the state management needs of the app.  | Extra considerations were made to help all team members understand how to contribute easily to the project, no matter their role. |
@@ -33,8 +33,8 @@ Marina Baskova: https://github.com/MarinaBaskova
 David Hennig: https://github.com/davidhennig
 
 ### Frontend
-Jackson Ogles (react dev #1): https://github.com/cjogles <br>
-Louis Gelinas (react dev #2): https://github.com/gelinas
+Jackson Ogles (junior react dev): https://github.com/cjogles <br>
+Louis Gelinas (senior react dev): https://github.com/gelinas
 
 ### Backend
 Quinton McNamee: https://github.com/QuintonMcNamee
