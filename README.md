@@ -5,12 +5,12 @@
 - **[React Developer 1](#junior-react-developer)**<br>
 - **[React Developer 2](#senior-react-developer)**<br>
 - **[Product Vision Document](#block-club-calendar)**<br>
-- **[Proposal](####proposal)**<br>
-- **[UX Design](####ux-design)**<br>
-- **[Frameworks and Libraries Used](####frameworks-and-libraries)**<br>
-- **[Target Audience](####target-audience)**<br>
-- **[Research](####research)**<br>
-- **[Prototype Key Features](####prototype-key-features)**<br>
+- **[Proposal](#proposal)**<br>
+- **[UX Design](#ux-design)**<br>
+- **[Frameworks and Libraries Used](#frameworks-and-libraries)**<br>
+- **[Target Audience](#target-audience)**<br>
+- **[Research](#research)**<br>
+- **[Prototype Key Features](#prototype-key-features)**<br>
 - **[Credits](#credits)**<br>
 
 ## <a name='overview'></a>Overview
