@@ -1,68 +1,40 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Block Club Calendar Front End 
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- **[Frameworks/Libraries Used](#frameworks-and-libraries-used)**<br>
+- **[React Developer 1](#react-developer-1)**<br>
+- **[React Developer 2](#react-developer-2)**<br>
+- **[Credits](#credits)**<br>
 
-### `yarn start`
+## <a name='overview'></a>Overview
+This frontend code base allows users to navigate block-club-calendar's website, edit and view the community calendar, create a neighborhood event including time, place, location, text description, external link, and an event image. Community members or organizations can also edit and delete events their own events while admin account users can edit and delete all events. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Frameworks and Libraries Used
+Front End Tech | Design System | Validation | Routing | Forms
+| ----- | ----------------- | -------------------- | --------------------- | ------------------ |
+React | Material UI / Design | Yup | Client Side Routing with React Router | Formik |
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## React Developer 1
+Applied JavaScript | React| Single Page Application | TeamWork Capabilities |
+| --------------------- | ---------------------- | --------------------- | -------------------- |
+Incorporated third party animation via zoom in material UI library. Array methods were used to dynamically render HTML elements | Created dynamic functional components and showcased proper usage of state and props with small reusable components. Usage of webHooks to manage state. | Used Axios to perform GET HTTP requests to database for list of events.  | Pair Programmed with React 2 Dev and Back End Architect to deliver top product |
 
-### `yarn test`
+## React Devleoper 2
+Applied JavaScript | React| Single Page Application | TeamWork Capabilities |
+| --------------------- | ---------------------- | --------------------- | -------------------- |
+Incorporated third party animation via zoom in material UI library. Array methods were used to dynamically render HTML elements | Created dynamic functional components and showcased proper usage of state and props with small reusable components. Usage of webHooks to manage state. | Used Axios to perform GET HTTP requests to database for list of events.  | Pair Programmed with React 2 Dev and Back End Architect to deliver top product |
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Credits
+### Project Manager
+Marina Baskova: https://github.com/MarinaBaskova
 
-### `yarn build`
+### User Interface
+David Hennig: https://github.com/davidhennig
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Frontend
+Jackson Ogles (react dev #1): https://github.com/cjogles <br>
+Louis Gelinas (react dev #2): https://github.com/gelinas
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Backend
+Quinton McNamee: https://github.com/QuintonMcNamee
