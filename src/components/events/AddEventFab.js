@@ -1,22 +1,34 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
-import { updateEvent, updateEventAdmin } from '../../actions/eventActions';
+import { postEvent } from '../../actions/eventActions';
+
+import { makeStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 
 import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
+
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
-
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
 
 import EventForm from './EventForm';
 
-function EditEventButton(props) {
+const useStyles = makeStyles(theme => ({
+  fab: {
+    position: 'fixed',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1),
+  },
+}));
+
+function AddEventFab(props) {
+  const classes = useStyles();
+
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -28,35 +40,38 @@ function EditEventButton(props) {
   };
 
   const editEvent = (values) => {
-    if (props.user.role === "admin") {
-      props.updateEventAdmin({
-      ...values,
-      id: props.values.id
-      });
-      return }
     props.updateEvent({
       ...values,
       id: props.values.id
-    });
-    return
+    })
   }
 
 
   return (
     <div>
-      <Button 
+      <Fab 
+        color="primary"
+        variant="extended" 
+        aria-label="add event" 
+        className={classes.fab}
+        onClick={handleOpen}
+      >
+        <AddIcon className={classes.extendedIcon} />
+        Create Event
+      </Fab>
+      {/* <Button 
         variant="contained" 
         color="secondary"
         onClick={handleOpen}
         startIcon={<EditIcon />}
       >
         Edit
-      </Button>
+      </Button> */}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Make Changes to Event Details</DialogTitle>
+        <DialogTitle id="form-dialog-title">Create a New Event</DialogTitle>
         <DialogContent>
 
-          <EventForm type="edit" action={editEvent} values={props.values} />
+          <EventForm type="add" action={props.postEvent} />
 
           {/* <TextField
             autoFocus
@@ -74,7 +89,6 @@ function EditEventButton(props) {
 
 const mapStateToProps = state => {
     return {
-        user: state.auth.user,
         eventList: state.event.eventList,
         event: state.event.event,
         isPosting: state.event.isPosting,
@@ -86,5 +100,5 @@ const mapStateToProps = state => {
   
 export default connect(
     mapStateToProps,
-    { updateEvent, updateEventAdmin }
-)(EditEventButton);
+    { postEvent }
+)(AddEventFab);

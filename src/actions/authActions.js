@@ -31,7 +31,7 @@ export const logIn = credentials => dispatch => {
   axiosWithAuth()
     .post('/api/auth/login', credentials)
     .then(res => {
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data.token })
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data })
       localStorage.setItem("token", res.data.token);
       console.log(res.data)
       dispatch({ type: LOGIN_DECODE, payload: decode(res.data.token) })

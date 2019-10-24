@@ -13,8 +13,8 @@ const FormikDatePicker = ({
     ...rest
   }) => {
     // console.log(rest);
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [selectedDateTime, setSelectedDateTime] = useState(null);
+    const [selectedDate, setSelectedDate] = useState(value ? value : null);
+    // const [selectedDateTime, setSelectedDateTime] = useState(null);
 
     const handleDateChange = date => {
         console.log("setting value to", date);
@@ -22,12 +22,12 @@ const FormikDatePicker = ({
         setFieldValue("date", date)
     };
 
-    const handleDateTimeChange = date => {
-        console.log("setting value to", date);
-        setSelectedDateTime(date);
-        setSelectedDate(date);
-        setFieldValue("date", date)
-    };
+    // const handleDateTimeChange = date => {
+    //     console.log("setting value to", date);
+    //     setSelectedDateTime(date);
+    //     setSelectedDate(date);
+    //     setFieldValue("date", date)
+    // };
 
     return (
         <Box mt={1}>
@@ -57,8 +57,10 @@ const FormikDatePicker = ({
                         name="time"
                         id="time-picker"
                         label="Event Time"
-                        value={selectedDateTime}
-                        onChange={handleDateTimeChange}
+                        // value={selectedDateTime}
+                        // onChange={handleDateTimeChange}
+                        value={selectedDate}
+                        onChange={handleDateChange}
                     />
                 </MuiPickersUtilsProvider>
             </Grid>

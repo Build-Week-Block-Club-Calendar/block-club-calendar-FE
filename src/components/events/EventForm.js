@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field } from "formik";
 import { TextField } from 'formik-material-ui';
+import * as moment from 'moment';
 
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -41,14 +42,7 @@ function EventForm (props) {
                         description: props.values.Description, 
                         link: props.values.Link, 
                         image: props.values.Image } 
-                    : { 
-                        title: "", 
-                        date: "", 
-                        time: "", 
-                        location: "", 
-                        description: "", 
-                        link: "", 
-                        image: "" }}
+                    : null}
             validate={values => {
                 let errors = {};
                 if (values.title === "") {
@@ -128,7 +122,7 @@ function EventForm (props) {
                     <Field 
                         type="text" 
                         name="image" 
-                        label="Image Upload"
+                        label="URL to Hosted Image"
                         component={TextField}
                         margin="normal"
                         fullWidth 

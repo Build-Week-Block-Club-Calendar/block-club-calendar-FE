@@ -1,7 +1,7 @@
 import * as a from '../actions/authActions'
 
 const initialState = {
-    userData: { username: "",
+    user: { username: "",
         password: "",
         email: "",
         name: "",
@@ -55,6 +55,7 @@ export const authReducer = (state = initialState, action) => {
         case a.LOGIN_SUCCESS:
             return {
                 ...state,
+                user: action.payload.user,
                 isPosting: false,
                 isLoggedIn: true,
                 isError: false,
