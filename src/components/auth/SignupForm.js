@@ -8,6 +8,7 @@ import { signUp } from "../../actions/authActions";
 import Loader from 'react-loader-spinner'
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import { red } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles(theme => ({
@@ -16,6 +17,9 @@ const useStyles = makeStyles(theme => ({
         flexFlow: 'column nowrap',
         alignItems: 'center',
     },
+    error: {
+        color: red[500],
+    }
   }));
 
 function SignupForm (props) {
@@ -90,14 +94,19 @@ function SignupForm (props) {
                         fullWidth 
                     />
 
-                    { props.isPosting ? (<Button 
+                    
+                    { props.isPosting 
+                    // if true, show disabled button with loading spinner
+                    ? (<Button 
                         type="submit"
                         variant="contained"
                         color="primary"
                         disabled
                     >
                         <Loader type="ThreeDots" color="#b6c2b7" height={10} width={45} />
-                    </Button>) : (
+                    </Button>) 
+                    // if false, show Log In button
+                    : (
                     <Button 
                         type="submit"
                         variant="contained"
@@ -108,9 +117,9 @@ function SignupForm (props) {
                 </Form> 
             )}
         </Formik>
-        {props.isError && (
-            <p className="error">{props.error}</p>
-        )}
+        {props.isError && 
+        // if true, render an error
+        ( <p className={classes.error}>{props.error}</p>)}
         </>
     )
 
