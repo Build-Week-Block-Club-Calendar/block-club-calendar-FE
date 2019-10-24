@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Navbar from './pages/Navbar';
+import Appbar from './pages/Appbar';
 import Content from './pages/Content';
 
 
@@ -23,7 +23,7 @@ function App() {
   return (
     // <Container maxWidth="lg">
     <Paper className={classes.root}>
-      <Navbar />
+      <Appbar />
       <Content />
       {/* <Footer /> */}
     </Paper>
