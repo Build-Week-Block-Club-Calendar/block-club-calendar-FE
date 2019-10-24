@@ -13,6 +13,7 @@ import rootReducer from './reducers';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from './utils/theme';
+import ScrollToTop from './utils/ScrollToTop'
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
@@ -34,6 +35,7 @@ ReactDOM.render(
         <ThemeProvider theme={theme}>
             {/* <MuiPickersUtilsProvider utils={MomentUtils}> */}
                 <Router>
+                    <ScrollToTop />
                     <CssBaseline />
                     <App />
                 </Router>
