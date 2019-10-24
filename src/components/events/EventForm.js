@@ -42,14 +42,7 @@ function EventForm (props) {
                         description: props.values.Description, 
                         link: props.values.Link, 
                         image: props.values.Image } 
-                    : { 
-                        title: "", 
-                        date: "", 
-                        time: "", 
-                        location: "", 
-                        description: "", 
-                        link: "", 
-                        image: "" }}
+                    : null}
             validate={values => {
                 let errors = {};
                 if (values.title === "") {
