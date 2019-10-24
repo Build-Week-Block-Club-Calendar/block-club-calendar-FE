@@ -8,6 +8,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import Avatar from '@material-ui/core/Avatar';
+
 import MenuIcon from '@material-ui/icons/Menu';
 
 // import AddEventFab from '../components/events/AddEventFab'
@@ -43,12 +45,11 @@ export default function ButtonAppBar() {
       <AppBar position="fixed" >
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
+            <Avatar alt="BCC Logo" src="../../../bcc_logo.png" />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             Block Club Calendar
           </Typography>
-            {false && <MenuIcon />}
             <Button color="inherit" onClick={() => navClick("/add-event")}>Add Event</Button>
             <Button color="inherit" onClick={() => navClick("/calendar")}>Calendar</Button>
             <Button color="inherit" onClick={() => navClick("/login")}>Login</Button>

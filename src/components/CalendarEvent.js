@@ -4,18 +4,14 @@ import * as moment from 'moment';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import DoneIcon from '@material-ui/icons/DoneOutline';
 import { red } from '@material-ui/core/colors';
-import { green } from '@material-ui/core/colors';
 
 import EditEventButton from './events/EditEventButton';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
