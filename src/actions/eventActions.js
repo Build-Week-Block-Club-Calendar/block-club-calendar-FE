@@ -1,5 +1,4 @@
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import decode from "jwt-decode";
 
 // eventReducer create event actions
 export const GET_EVENT_START = "GET_EVENT_START";

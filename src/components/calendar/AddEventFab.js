@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
 function AddEventFab(props) {
   const classes = useStyles();
 
-  // add event form dialog state handlers
+  // event form dialog state handlers
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -42,9 +42,9 @@ function AddEventFab(props) {
 
   // error message dialog state handlers
   const [errorOpen, setErrorOpen] = useState(true);
-  const handleErrorOpen = () => {
-    setErrorOpen(true);
-  };
+  // const handleErrorOpen = () => {
+  //   setErrorOpen(true);
+  // };
   const handleErrorClose = () => {
     setErrorOpen(false);
   };

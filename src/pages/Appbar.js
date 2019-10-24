@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+// import useMediaQuery from '@material-ui/core/useMediaQuery';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -33,12 +33,6 @@ function Appbar(props) {
   const classes = useStyles();
 
   let history = useHistory();
-
-  const desktopView = useMediaQuery(theme => theme.breakpoints.up('sm'));
-  
-  const navClick = (path) =>{
-    history.push(path);
-  }
 
   return (
     <div className={classes.root}>

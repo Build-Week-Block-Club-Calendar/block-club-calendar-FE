@@ -27,9 +27,9 @@ function AddEvent (props) {
 
     // error message dialog state handlers
     const [errorOpen, setErrorOpen] = useState(true);
-    const handleErrorOpen = () => {
-        setErrorOpen(true);
-    };
+    // const handleErrorOpen = () => {
+    //     setErrorOpen(true);
+    // };
     const handleErrorClose = () => {
         setErrorOpen(false);
     };
