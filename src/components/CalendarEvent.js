@@ -12,8 +12,10 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import DoneIcon from '@material-ui/icons/DoneOutline';
 import { red } from '@material-ui/core/colors';
+import { green } from '@material-ui/core/colors';
 
 import EditEventButton from './events/EditEventButton';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
@@ -75,16 +77,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const goingFunction = (id) =>{
-  axiosWithAuth()
-    .post(`/api/going`, {"event_id": id})
-    .then(res => {
-      console.log("goingFunction RES: ", res.data);
-    })
-    .catch(err => {
-      console.log("goingFunction ERR", err);
-    });
-}
+const GoingButton = withStyles(theme => ({
+  root: {
+    color: '#000000',
+    backgroundColor: '#98ee99',
+    '&:hover': {
+      backgroundColor: '#98ee99',
+    },
+  },
+}))(Button);
 
 const DeleteButton = withStyles(theme => ({
   root: {
@@ -96,13 +97,24 @@ const DeleteButton = withStyles(theme => ({
   },
 }))(Button);
 
+const goingFunction = (id) =>{
+  axiosWithAuth()
+    .post(`/api/going`, {"event_id": id})
+    .then(res => {
+      console.log("goingFunction RES: ", res.data);
+    })
+    .catch(err => {
+      console.log("goingFunction ERR", err);
+    });
+}
+
 export default function CalendarEvent(props) {
   const classes = useStyles();
   const { event } = props;
 
   
   
-  // console.log("props from event", props)
+  console.log(`props from event ${event.Title}`, props)
 
     return (
         <Card className={classes.card}>
@@ -129,14 +141,22 @@ export default function CalendarEvent(props) {
                   </Typography>
                 </div>
                 <CardActions className={classes.controls}>
-                  <Button 
+                  { props.isGoing ? (<GoingButton 
                     variant="contained" 
-                    color="primary"
                     startIcon={<DoneOutlineIcon />}
-                    onClick={() => goingFunction(event.id)}
+                    disableRipple
+                    disableFocusRipple
+                    onClick={() => props.goingAction(event.id)}
                   >
                     Going
-                  </Button>
+                  </GoingButton>) : (<Button 
+                    variant="contained" 
+                    color="primary"
+                    startIcon={<ThumbUpIcon />}
+                    onClick={() => props.goingAction(event.id)}
+                  >
+                    RSVP
+                  </Button>) }
                   
                   
                   { props.showEdit ? (<EditEventButton values={event}/>) : (null) }

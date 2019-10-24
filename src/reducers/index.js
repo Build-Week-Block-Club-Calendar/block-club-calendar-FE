@@ -6,6 +6,7 @@ import { combineReducers } from 'redux';
 
 import { authReducer as auth } from './authReducer';
 import { eventReducer as event } from './eventReducer';
+import { goingReducer as going } from './goingReducer';
 // import { userReducer as user } from './userReducer';
 
 
@@ -13,6 +14,7 @@ import { eventReducer as event } from './eventReducer';
 
 export default combineReducers({
   auth,
-  event
+  event,
+  going
   // otherReducers
 });
