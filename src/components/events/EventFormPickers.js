@@ -13,7 +13,7 @@ const FormikDatePicker = ({
     ...rest
   }) => {
     // console.log(rest);
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate, setSelectedDate] = useState(value);
     // const [selectedDateTime, setSelectedDateTime] = useState(null);
 
     const handleDateChange = date => {
