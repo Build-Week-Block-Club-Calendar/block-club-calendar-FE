@@ -1,18 +1,17 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 
-import MenuIcon from '@material-ui/icons/Menu';
-
-// import AddEventFab from '../components/events/AddEventFab'
+import NavbarNoAuth from './NavbarNoAuth';
+import NavbarAuth from './NavbarAuth';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   //   maxWidth: "1280px",
   //   margin: "auto"
   // },
-  menuButton: {
+  iconSpacer: {
     marginRight: theme.spacing(2),
   },
   title: {
@@ -30,10 +29,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ButtonAppBar() {
+function Appbar(props) {
   const classes = useStyles();
 
   let history = useHistory();
+
+  const desktopView = useMediaQuery(theme => theme.breakpoints.up('sm'));
   
   const navClick = (path) =>{
     history.push(path);
@@ -41,22 +42,29 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      {/* <AppBar position="fixed" className={classes.fixedWidth}> */}
       <AppBar position="fixed" >
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton edge="start" className={classes.iconSpacer} color="inherit" aria-label="menu">
             <Avatar alt="BCC Logo" src="../../../bcc_logo.png" />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             Block Club Calendar
           </Typography>
-            <Button color="inherit" onClick={() => navClick("/add-event")}>Add Event</Button>
-            <Button color="inherit" onClick={() => navClick("/calendar")}>Calendar</Button>
-            <Button color="inherit" onClick={() => navClick("/login")}>Login</Button>
-            <Button color="inherit" onClick={() => navClick("/signup")}>Sign up</Button>
+          { props.isLoggedIn 
+            ? <NavbarAuth />
+            : <NavbarNoAuth />
+          }
         </Toolbar>
       </AppBar>
       <Toolbar />
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.auth.isLoggedIn
+  };
+};
+
+export default connect(mapStateToProps)(Appbar);

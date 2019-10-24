@@ -112,7 +112,7 @@ function SignupForm (props) {
                         variant="contained"
                         color="primary"
                     >
-                        Log In
+                        Sign Up
                     </Button>)}
                 </Form> 
             )}

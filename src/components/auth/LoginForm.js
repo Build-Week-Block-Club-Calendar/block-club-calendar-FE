@@ -91,7 +91,7 @@ function LoginForm (props) {
                         variant="contained"
                         color="primary"
                     >
-                        Sign Up
+                        Log In
                     </Button>)}
                     
                 </Form> 
