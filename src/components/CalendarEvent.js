@@ -12,9 +12,11 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
+import DoneIcon from '@material-ui/icons/DoneOutline';
 import { red } from '@material-ui/core/colors';
 
 import EditEventButton from './events/EditEventButton';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -73,6 +75,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const goingFunction = (id) =>{
+  axiosWithAuth()
+    .post(`/api/going`, {"event_id": id})
+    .then(res => {
+      console.log("goingFunction RES: ", res.data);
+    })
+    .catch(err => {
+      console.log("goingFunction ERR", err);
+    });
+}
+
 const DeleteButton = withStyles(theme => ({
   root: {
     color: theme.palette.getContrastText(red[500]),
@@ -120,6 +133,7 @@ export default function CalendarEvent(props) {
                     variant="contained" 
                     color="primary"
                     startIcon={<DoneOutlineIcon />}
+                    onClick={() => goingFunction(event.id)}
                   >
                     Going
                   </Button>
