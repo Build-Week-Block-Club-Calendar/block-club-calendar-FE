@@ -2,12 +2,12 @@
 
 ## Table of Contents
 
-- **[Frameworks/Libraries Used](#frameworks-and-libraries-used)**<br>
 - **[React Developer 1](#junior-react-developer)**<br>
 - **[React Developer 2](#senior-react-developer)**<br>
 - **[Product Vision Document](#block-club-calendar)**<br>
 - **[Proposal](####proposal)**<br>
 - **[UX Design](####ux-design)**<br>
+- **[Frameworks and Libraries Used](####frameworks-and-libraries)**<br>
 - **[Target Audience](####target-audience)**<br>
 - **[Research](####research)**<br>
 - **[Prototype Key Features](####prototype-key-features)**<br>
@@ -15,11 +15,6 @@
 
 ## <a name='overview'></a>Overview
 This frontend code base allows users to navigate block-club-calendar's website by editing and viewing the community calendar, creating  neighborhood events including time, place, location, text description, external link, and event images. Community members or organizations can also edit and delete their own events while admin account users can edit and delete all events. 
-
-## Frameworks and Libraries Used
-Front End Tech | Design System | Validation | Routing | Forms
-| -------------- | ------------------------ | ------------------------- | -------------------------- | ----------------------- |
-React | Material UI / Design | Yup | Client Side Routing with React Router | Formik |
 
 ## Junior React Developer
 Applied JavaScript | React| Single Page Application | TeamWork Capabilities |
@@ -97,7 +92,7 @@ https://www.figma.com/file/6nW0gjTv2LscOSROk87Yjr/Block-Club-Cal---Material-UI?n
 - START → Enter marketing page / landing home page
 - Landing Page is composed of a Calendar View. Calendar could be a list of cards each composed with necessary event information.          - Somewhere else on the page could be a login button for users to login so they are able to submit North End Detroit events. Admin can review and submit events to the calendar. (Yellow indicates STRETCH goals after MVP is met).
 
-#### Frameworks - Libraries
+#### Frameworks and Libraries
 - What 3rd party frameworks/libraries are you considering using?
 
 **Frontend:**
