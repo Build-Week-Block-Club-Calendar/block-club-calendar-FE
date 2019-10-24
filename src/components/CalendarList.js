@@ -30,6 +30,9 @@ function CalendarList(props) {
   
     return (
         <Box display="flex" flexDirection="Column" flexWrap="nowrap" alignItems="center">
+
+          {/* map function for rendering event cards */}
+
             {props.event.eventList.map(event => {
               const eventAttendees = props.going.goingList
                 .filter(entry => entry.Event === event.Title)
@@ -75,8 +78,11 @@ function CalendarList(props) {
               showEdit={false} 
               showDelete={false} 
               delete={props.deleteEvent}
-              attendees={eventAttendees} /> })}
-            <AddEventFab />
+              attendees={eventAttendees} /> })
+            }
+          {/* end map function for rendering event cards */}
+
+          {props.auth.isLoggedIn && <AddEventFab />}
         </Box>
     );
 }
