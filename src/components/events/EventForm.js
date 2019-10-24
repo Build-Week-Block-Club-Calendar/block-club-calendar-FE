@@ -5,8 +5,9 @@ import * as moment from 'moment';
 
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import { red } from '@material-ui/core/colors';
 
-import FormikDatePicker from './EventFormPickers';
+import EventFormPickers from './EventFormPickers';
 
 const useStyles = makeStyles(theme => ({
     columnNowrap: {
@@ -14,6 +15,9 @@ const useStyles = makeStyles(theme => ({
         flexFlow: 'column nowrap',
         alignItems: 'center',
     },
+    error: {
+        color: red[500],
+    }
   }));
 
 function EventForm (props) {
@@ -90,7 +94,7 @@ function EventForm (props) {
                         fullWidth 
                     />
 
-                    <Field component={FormikDatePicker} name="date" />
+                    <Field component={EventFormPickers} name="date" />
 
                     <Field 
                         type="text" 
@@ -138,9 +142,9 @@ function EventForm (props) {
                 </Form> 
             )}
         </Formik>
-        {props.isError && (
-            <p className="error">{props.error.message}</p>
-        )}
+        {props.isError && 
+        // if true, render an error
+        ( <p className={classes.error}>{props.error}</p>)}
         </>
     )
 }

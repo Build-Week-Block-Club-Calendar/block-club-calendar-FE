@@ -48,7 +48,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Block Club Calendar
           </Typography>
-            {/* <AddEventFab /> */}
+            {false && <MenuIcon />}
             <Button color="inherit" onClick={() => navClick("/add-event")}>Add Event</Button>
             <Button color="inherit" onClick={() => navClick("/calendar")}>Calendar</Button>
             <Button color="inherit" onClick={() => navClick("/login")}>Login</Button>
