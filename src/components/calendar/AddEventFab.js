@@ -6,14 +6,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
-import Button from '@material-ui/core/Button';
-import EditIcon from '@material-ui/icons/Edit';
-
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import EventForm from './EventForm';
+import EventForm from '../events/EventForm';
 
 const useStyles = makeStyles(theme => ({
   fab: {
@@ -39,11 +36,8 @@ function AddEventFab(props) {
     setOpen(false);
   };
 
-  const editEvent = (values) => {
-    props.updateEvent({
-      ...values,
-      id: props.values.id
-    })
+  const submitForm = () {
+    
   }
 
 

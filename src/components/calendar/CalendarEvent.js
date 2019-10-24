@@ -13,8 +13,8 @@ import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import { red } from '@material-ui/core/colors';
 
-import EditEventButton from './events/EditEventButton';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import EditEventButton from '../events/EditEventButton';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 const useStyles = makeStyles(theme => ({
   card: {

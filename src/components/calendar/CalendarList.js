@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
 // import axios from 'axios';
 import { connect } from "react-redux";
-import { getEventList, deleteEvent, deleteEventAdmin } from "../actions/eventActions";
-import { getGoingList, postGoing } from "../actions/goingActions";
+import { getEventList, deleteEvent, deleteEventAdmin } from "../../actions/eventActions";
+import { getGoingList, postGoing } from "../../actions/goingActions";
 
 import Box from '@material-ui/core/Box';
 
 import CalendarEvent from './CalendarEvent';
-import AddEventFab from './events/AddEventFab';
+import AddEventFab from './AddEventFab';
 
 
 function CalendarList(props) {
