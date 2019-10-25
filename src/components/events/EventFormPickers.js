@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import DateFnsUtils from '@date-io/date-fns';
+// import DateFnsUtils from '@date-io/date-fns';
+import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider, DatePicker, TimePicker } from '@material-ui/pickers';
 
 import Box from '@material-ui/core/Box';
@@ -33,7 +34,7 @@ const FormikDatePicker = ({
         <Box mt={1}>
             <Grid container justify="space-around">
                 
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>                    
+                <MuiPickersUtilsProvider utils={MomentUtils}>                    
                     <DatePicker
                         name={name}
                         id="date-picker"
@@ -41,7 +42,7 @@ const FormikDatePicker = ({
                         clearable
                         autoOk
                         label="Event Date"
-                        format="dd/MM/yyyy"
+                        format="MMM Do YYYY"
                         // handle clearing outside => pass plain array if you are not controlling value outside
                         // mask={value =>
                         //   value

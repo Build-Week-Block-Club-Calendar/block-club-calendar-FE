@@ -27,6 +27,9 @@ const useStyles = makeStyles(theme => ({
   topBlock : {
     display: 'flex'
   },
+  // bold: {
+  //   fontWeight: 'bold',
+  // },
   redBorder: {
     // border: "2px solid red"
   },
@@ -97,7 +100,7 @@ export default function CalendarEvent(props) {
   const { event } = props;
   
   // console.log(`props from event ${event.Title}`, props)
-
+  
     return (
         <Card className={classes.card}>
           <Grid container>
@@ -108,15 +111,18 @@ export default function CalendarEvent(props) {
                 </Typography>
                 <div className={classes.details}>
                   <Typography variant="body2" component="p">
-                    Location: {event.Location}
-                  </Typography>
-                  <Typography variant="body2" component="p">
                     {/* Date: {event.Date} */}
                     Date: {`${moment(event.Date).format('dddd, MMMM Do YYYY')}`}
                   </Typography>
                   <Typography variant="body2" component="p">
                     {/* Time: {event.Time} */}
-                    Time: {`${moment(event.Time).format('H:mm A')}`}
+                    Time: {`${moment(event.Date).format('h:mm A')}`}
+                  </Typography>
+                  <Typography variant="body2" component="p">
+                    Location: {event.Location}
+                  </Typography>
+                  <Typography variant="body2" component="p">
+                    Address: {event.Address}
                   </Typography>
                   <Typography variant="body2" component="p">
                     Description: {event.Description}
