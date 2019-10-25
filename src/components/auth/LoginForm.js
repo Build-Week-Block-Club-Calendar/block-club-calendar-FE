@@ -27,6 +27,7 @@ function LoginForm (props) {
     return (
         <>
         {props.isLoggedIn ? <Redirect push to="/calendar" /> : null}
+
         <Formik
             initialValues={{ username: "", password: "" }}
             validate={values => {
@@ -97,6 +98,7 @@ function LoginForm (props) {
                 </Form> 
             )}
         </Formik>
+        
         {props.isError && 
         // if true, render an error
         ( <p className={classes.error}>{props.error}</p>)}

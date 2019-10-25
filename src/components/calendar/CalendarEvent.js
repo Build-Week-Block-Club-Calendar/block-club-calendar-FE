@@ -100,7 +100,7 @@ export default function CalendarEvent(props) {
   const { event } = props;
   
   // console.log(`props from event ${event.Title}`, props)
-
+  
     return (
         <Card className={classes.card}>
           <Grid container>

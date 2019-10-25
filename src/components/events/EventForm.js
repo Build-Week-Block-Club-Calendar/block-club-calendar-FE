@@ -41,8 +41,8 @@ function EventForm (props) {
                     ?  { 
                         title: props.values.Title, 
                         date: props.values.Date, 
-                        address: props.values.Address, 
                         location: props.values.Location, 
+                        address: props.values.Address, 
                         description: props.values.Description, 
                         link: props.values.Link, 
                         image: props.values.Image } 
@@ -73,8 +73,8 @@ function EventForm (props) {
                 props.action({ 
                     title: values.title, 
                     date: `${values.date}`,
-                    address: values.location,
                     location: values.location,
+                    address: values.address,
                     description: values.description,
                     link: values.link,
                     image: values.image, })
@@ -150,6 +150,7 @@ function EventForm (props) {
                 </Form> 
             )}
         </Formik>
+        
         {props.isError && 
         // if true, render an error
         ( <p className={classes.error}>{props.error}</p>)}
