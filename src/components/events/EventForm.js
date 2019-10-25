@@ -41,7 +41,7 @@ function EventForm (props) {
                     ?  { 
                         title: props.values.Title, 
                         date: props.values.Date, 
-                        time: props.values.Time, 
+                        address: props.values.Address, 
                         location: props.values.Location, 
                         description: props.values.Description, 
                         link: props.values.Link, 
@@ -73,7 +73,7 @@ function EventForm (props) {
                 props.action({ 
                     title: values.title, 
                     date: `${values.date}`,
-                    time: `${values.date}`,
+                    address: values.location,
                     location: values.location,
                     description: values.description,
                     link: values.link,
@@ -99,6 +99,15 @@ function EventForm (props) {
                         type="text" 
                         name="location" 
                         label="Location"
+                        component={TextField}
+                        margin="normal"
+                        fullWidth 
+                    />
+
+                    <Field 
+                        type="text" 
+                        name="address" 
+                        label="Address"
                         component={TextField}
                         margin="normal"
                         fullWidth 
